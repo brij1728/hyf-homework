@@ -55,6 +55,7 @@ const seriesDurations = [
 const averageLifeSpam = 80;
 
 function logOutSeriesText(seriesDurations) {
+  let total = 0;
   for (let i = 0; i < seriesDurations.length; i++) {
     const daysInYears = seriesDurations[i].days / 365;
     const hoursInYears = seriesDurations[i].hours / (24 * 365);
@@ -66,11 +67,13 @@ function logOutSeriesText(seriesDurations) {
     const percentageSeriesInLife = totalSeriesDurationInYears / averageLifeSpam;
 
     console.log(
-      `${seriesDurations[i].title} took ${percentageSeriesInLife.toFixed(
-        5
-      )} % of my life`
+      `${seriesDurations[i].title} took ${percentageSeriesInLife.toFixed(5)} 
+      % of my life`
     );
+
+    total += percentageSeriesInLife;
   }
+  console.log(`In total that is ${total.toFixed(5)} % of my life`);
 }
 
 logOutSeriesText(seriesDurations);
