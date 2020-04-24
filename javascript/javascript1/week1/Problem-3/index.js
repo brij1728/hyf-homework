@@ -17,14 +17,13 @@ const peterHouseHigh = 10;
 const petergardenSize = 100; //in meter squares
 const peterHouseCost = 2500000;
 
-const peterHouseVolumeInMeters =
-  peterHouseWide * peterHouseDeep * peterHouseHigh;
+const peterHouseVolumeInMeters = peterHouseWide * peterHouseDeep * peterHouseHigh;
 
 const peterHousePrice = peterHouseVolumeInMeters * 2.5 * 1000 + petergardenSize * 300;
-console.log("PeterHousePrice is:", peterHousePrice);
+console.log('PeterHousePrice is:', peterHousePrice);
 
 console.log(peterHousePrice > peterHouseCost);
-console.log("Peter is not paying more than his House cost price.");
+console.log('Peter is not paying more than his House cost price.');
 
 const juliaHouseWide = 5;
 const juliaHouseDeep = 11;
@@ -32,14 +31,11 @@ const juliaHouseHigh = 8;
 const juliagardenSize = 70;
 const juliaHouseCost = 1000000;
 
-const juliaHouseVolumeInMeters =
-  juliaHouseWide * juliaHouseDeep * juliaHouseHigh;
+const juliaHouseVolumeInMeters = juliaHouseWide * juliaHouseDeep * juliaHouseHigh;
 
-const juliaHousePrice =
-  juliaHouseVolumeInMeters * 2.5 * 1000 + juliagardenSize * 300;
-console.log("JuliaHousePrice is:", juliaHousePrice);
+const juliaHousePrice = juliaHouseVolumeInMeters * 2.5 * 1000 + juliagardenSize * 300;
+console.log('JuliaHousePrice is:', juliaHousePrice);
 
 console.log(juliaHousePrice > juliaHouseCost);
 
-console.log("Julia is paying more than her House cost price.");
-
+console.log('Julia is paying more than her House cost price.');

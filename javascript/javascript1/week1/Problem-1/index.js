@@ -16,9 +16,8 @@ Create two variables called yearOfBirth and yearFuture.
   string concatenation) 
   */
 
- const yearofBirth = 1987;
- const yearFuture = 2027;
- const age = yearFuture - yearofBirth;
- 
- console.log(`\"You will be ${age} years old in ${yearFuture}.\"`)
- 
+const yearofBirth = 1987;
+const yearFuture = 2027;
+const age = yearFuture - yearofBirth;
+
+console.log(`\"You will be ${age} years old in ${yearFuture}.\"`);

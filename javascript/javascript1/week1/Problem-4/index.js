@@ -10,42 +10,19 @@ Create two arrays called firstWords, secondWords. The arrays should have 10 elem
 Using a random index (you choose) of the arrays and concatenation of strings, create and log the new startup name and the number of characters in it. An example could be: "The startup: "Easy Corporation" contains 16 characters"
 */
 
-const firstWords = [
-  "Easy",
-  "Corporate",
-  "Awesome",
-  "Hello",
-  "Grocery",
-  "India",
-  "Mind",
-  "China",
-  "Pandemic",
-  "WHO",
-];
-const secondWords = [
-  "World",
-  "Salon",
-  "UN",
-  "Day",
-  "USA",
-  "Himalaya",
-  "Kashi",
-  "Paradise",
-  "Ganga",
-  "Reliance",
-];
+const firstWords = ['Easy', 'Corporate', 'Awesome', 'Hello', 'Grocery', 'India', 'Mind', 'China', 'Pandemic', 'WHO'];
+const secondWords = ['World', 'Salon', 'UN', 'Day', 'USA', 'Himalaya', 'Kashi', 'Paradise', 'Ganga', 'Reliance'];
 
 const startupName1 = firstWords[Math.floor(Math.random() * firstWords.length)];
 
 console.log(startupName1);
 
-const startupName2 =
-  secondWords[Math.floor(Math.random() * secondWords.length)];
+const startupName2 = secondWords[Math.floor(Math.random() * secondWords.length)];
 
 console.log(startupName2);
 
-console.log(startupName1.concat(" ", startupName2));
+console.log(startupName1.concat(' ', startupName2));
 
-const startupName = startupName1.concat(" ", startupName2);
+const startupName = startupName1.concat(' ', startupName2);
 
-console.log(`\"The startup: \"${startupName}\" contains ${(startupName.length)} characters\"`)
+console.log(`\"The startup: \"${startupName}\" contains ${startupName.length} characters\"`);

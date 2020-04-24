@@ -25,12 +25,7 @@ let shouldShowResultInDogYears;
 
 shouldShowResultInDogYears = true;
 
-console.log(`\"Your dog will be ${dogYear/10} human years old in ${dogYear}.\"`);
+console.log(`\"Your dog will be ${dogYear / 10} human years old in ${dogYear}.\"`);
 
 shouldShowResultInDogYears = false;
 console.log(`\"Your dog will be ${dogYear} human years old in ${dogYear}.\"`);
-
-
-
-
-
