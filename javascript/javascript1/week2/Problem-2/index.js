@@ -11,15 +11,7 @@ Today is Sunday and the event is in 5 days. Therefore the event will be held
 on a friday.
 */
 
-const weekDays = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 const today = new Date();
 
@@ -30,4 +22,3 @@ function getEventWeekday(days) {
 
 console.log(getEventWeekday(19));
 console.log(getEventWeekday(40));
-

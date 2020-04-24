@@ -13,8 +13,8 @@ function sumInput() {
   let numbers = [];
 
   while (true) {
-    let value = prompt("A number please", 0);
-    if (value === "" || value === null || !isFinite(value)) break;
+    let value = prompt('A number please', 0);
+    if (value === '' || value === null || !isFinite(value)) break;
 
     numbers.push(value);
   }
@@ -28,7 +28,6 @@ function sumInput() {
 
 alert(sumInput());
 
-
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -40,6 +39,4 @@ The task is: find the contiguous subarray of arr with the maximal sum of items.
 Write the function getMaxSubSum(arr) that will return that sum. 
 */
 
-function getMaxSubSum() {
-
-}
+function getMaxSubSum() {}

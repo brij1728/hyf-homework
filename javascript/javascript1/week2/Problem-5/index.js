@@ -20,22 +20,22 @@ const amountToSpend = Math.random() * 100;
 const boughtCandyPrices = [];
 
 function addCandy(candyType, weight) {
-  if (candyType === "sweet") {
+  if (candyType === 'sweet') {
     boughtCandyPrices.push(0.5 * weight);
-  } else if (candyType === "chocolate") {
+  } else if (candyType === 'chocolate') {
     boughtCandyPrices.push(0.7 * weight);
-  } else if (candyType === "toffee") {
+  } else if (candyType === 'toffee') {
     boughtCandyPrices.push(1.1 * weight);
-  } else if (candyType === "chewing-gum") {
+  } else if (candyType === 'chewing-gum') {
     boughtCandyPrices.push(0.03 * weight);
   }
 }
 
-addCandy("sweet", 10);
+addCandy('sweet', 10);
 console.log(boughtCandyPrices);
 
-addCandy("toffee", 20);
-addCandy("chocolate", 50);
+addCandy('toffee', 20);
+addCandy('chocolate', 50);
 console.log(boughtCandyPrices);
 
 //Can i buy more?
@@ -65,13 +65,9 @@ function canBuyMoreCandy(budget) {
   }
 }
 
-
 console.log(`Spending amount is: ${amountToSpend}`);
 
 canBuyMoreCandy(amountToSpend);
-
-
-
 
 /* const amountToSpend = Math.random() * 100;
 console.log(amountToSpend);

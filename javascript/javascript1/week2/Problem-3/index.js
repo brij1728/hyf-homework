@@ -23,4 +23,3 @@ console.log(clothesToWear(23));
 console.log(clothesToWear(45));
 console.log(clothesToWear(13));
 console.log(clothesToWear(3));
-

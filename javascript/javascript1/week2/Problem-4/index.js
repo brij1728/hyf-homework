@@ -26,13 +26,13 @@ function addStudentToClass(studentName) {
     console.log(`\"Cannot add more students to class 07\"`);
   } else if (class07Students.includes(studentName)) {
     console.log(`\'Student ${studentName} is already in the class\'`);
-  } else if (studentName === "") {
+  } else if (studentName === '') {
     alert(`Please add a student name`);
-  } else if (studentName === "Queen") {
+  } else if (studentName === 'Queen') {
     class07Students.pop();
-    class07Students.push("Queen");
+    class07Students.push('Queen');
   } else {
-    console.log("Going to add", studentName);
+    console.log('Going to add', studentName);
     class07Students.push(studentName);
   }
 }
@@ -41,18 +41,17 @@ function getNumbersOfStudent() {
   return (n = class07Students.length);
 }
 
-addStudentToClass("Benjamin");
+addStudentToClass('Benjamin');
 
-addStudentToClass("Hello");
-addStudentToClass("Leo");
-addStudentToClass("Robert");
-addStudentToClass("Rodrigues");
-addStudentToClass("Taylor");
+addStudentToClass('Hello');
+addStudentToClass('Leo');
+addStudentToClass('Robert');
+addStudentToClass('Rodrigues');
+addStudentToClass('Taylor');
 
 console.log(class07Students);
 
-addStudentToClass("Queen");
+addStudentToClass('Queen');
 console.log(class07Students);
 
 console.log(getNumbersOfStudent());
-

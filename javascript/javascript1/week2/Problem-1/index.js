@@ -31,16 +31,16 @@ the function should add a Lord in front of the name.
 */
 
 function getFullname(firstname, surname, useFormalName) {
-  let fullName = firstname + " " + surname;
+  let fullName = firstname + ' ' + surname;
   if (useFormalName === true) {
-    return "Lord " + fullName;
+    return 'Lord ' + fullName;
   } else if (useFormalName === false) {
     return fullName;
   }
 }
 
-const fullname3 = getFullname("Robert", "Clive", true);
-const fullname4 = getFullname("Abhishek", "Kumar", false);
+const fullname3 = getFullname('Robert', 'Clive', true);
+const fullname4 = getFullname('Abhishek', 'Kumar', false);
 
 console.log(fullname3);
 console.log(fullname4);
