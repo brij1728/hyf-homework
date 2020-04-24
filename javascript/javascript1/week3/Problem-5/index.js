@@ -33,16 +33,16 @@ the function should add a Lord in front of the name.
 */
 
 function getFullname(firstname, surname, useFormalName) {
-  let fullName = firstname + " " + surname;
+  let fullName = firstname + ' ' + surname;
   if (useFormalName === true) {
-    return "Lord " + fullName;
+    return 'Lord ' + fullName;
   } else if (useFormalName === false) {
     return fullName;
   }
 }
 
-const fullname3 = getFullname("Robert", "Clive", true);
-const fullname4 = getFullname("Abhishek", "Kumar", false);
+const fullname3 = getFullname('Robert', 'Clive', true);
+const fullname4 = getFullname('Abhishek', 'Kumar', false);
 
 console.log(fullname3);
 console.log(fullname4);
@@ -63,15 +63,7 @@ Today is Sunday and the event is in 5 days. Therefore the event will be held
 on a friday.
 */
 
-const weekDays = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 const today = new Date();
 
@@ -143,13 +135,13 @@ function addStudentToClass(studentName) {
     console.log(`\"Cannot add more students to class 07\"`);
   } else if (class07Students.includes(studentName)) {
     console.log(`\'Student ${studentName} is already in the class\'`);
-  } else if (studentName === "") {
+  } else if (studentName === '') {
     alert(`Please add a student name`);
-  } else if (studentName === "Queen") {
+  } else if (studentName === 'Queen') {
     class07Students.pop();
-    class07Students.push("Queen");
+    class07Students.push('Queen');
   } else {
-    console.log("Going to add", studentName);
+    console.log('Going to add', studentName);
     class07Students.push(studentName);
   }
 }
@@ -158,17 +150,17 @@ function getNumbersOfStudent() {
   return (n = class07Students.length);
 }
 
-addStudentToClass("Benjamin");
+addStudentToClass('Benjamin');
 
-addStudentToClass("Hello");
-addStudentToClass("Leo");
-addStudentToClass("Robert");
-addStudentToClass("Rodrigues");
-addStudentToClass("Taylor");
+addStudentToClass('Hello');
+addStudentToClass('Leo');
+addStudentToClass('Robert');
+addStudentToClass('Rodrigues');
+addStudentToClass('Taylor');
 
 console.log(class07Students);
 
-addStudentToClass("Queen");
+addStudentToClass('Queen');
 console.log(class07Students);
 
 console.log(getNumbersOfStudent());
@@ -198,22 +190,22 @@ const amountToSpend = Math.random() * 100;
 const boughtCandyPrices = [];
 
 function addCandy(candyType, weight) {
-  if (candyType === "sweet") {
+  if (candyType === 'sweet') {
     boughtCandyPrices.push(0.5 * weight);
-  } else if (candyType === "chocolate") {
+  } else if (candyType === 'chocolate') {
     boughtCandyPrices.push(0.7 * weight);
-  } else if (candyType === "toffee") {
+  } else if (candyType === 'toffee') {
     boughtCandyPrices.push(1.1 * weight);
-  } else if (candyType === "chewing-gum") {
+  } else if (candyType === 'chewing-gum') {
     boughtCandyPrices.push(0.03 * weight);
   }
 }
 
-addCandy("sweet", 10);
+addCandy('sweet', 10);
 console.log(boughtCandyPrices);
 
-addCandy("toffee", 20);
-addCandy("chocolate", 50);
+addCandy('toffee', 20);
+addCandy('chocolate', 50);
 console.log(boughtCandyPrices);
 
 //Can i buy more?
@@ -243,13 +235,9 @@ function canBuyMoreCandy(budget) {
   }
 }
 
-
 console.log(`Spending amount is: ${amountToSpend}`);
 
 canBuyMoreCandy(amountToSpend);
-
-
-
 
 /* const amountToSpend = Math.random() * 100;
 console.log(amountToSpend);

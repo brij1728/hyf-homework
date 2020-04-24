@@ -13,7 +13,7 @@ const travelInformation = {
 
 function calulateTravelTime(travelInformation) {
   const time = travelInformation.destinationDistance / travelInformation.speed;
-  const hours = Math.floor(time );
+  const hours = Math.floor(time);
   const minutes = Math.ceil((time % 1) * 60);
   return `${hours} hours and ${minutes} minutes`;
 }

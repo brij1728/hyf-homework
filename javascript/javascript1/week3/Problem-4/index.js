@@ -30,8 +30,8 @@ function saveNote(content, id) {
   });
 }
 
-saveNote("Pick up groceries", 1);
-saveNote("Do laundry", 2);
+saveNote('Pick up groceries', 1);
+saveNote('Do laundry', 2);
 
 console.log(notes);
 
@@ -70,9 +70,7 @@ following note text: "some example note"."
 
 function logOutNotesFormatted() {
   for (let i = 0; i < notes.length; i++) {
-    console.log(
-      `The note with id: ${notes[i].id}, has the following note text: ${notes[i].content}`
-    );
+    console.log(`The note with id: ${notes[i].id}, has the following note text: ${notes[i].content}`);
   }
 }
 
