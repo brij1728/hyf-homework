@@ -1,0 +1,9 @@
+// Simple EventListener
+// When clicking a button, change the text on the button to say "Button clicked"
+
+const myButton = document.querySelector('button');
+
+myButton.addEventListener('click', () => {
+  myButton.innerText = 'Button clicked';
+  myButton.style.color = 'pink';
+});
