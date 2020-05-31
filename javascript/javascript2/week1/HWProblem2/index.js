@@ -23,20 +23,6 @@ What if the user clicks the generate new spirit animal and there is no text in t
 Event types - Optional and a little tricky
 */
 
-const nameForm = document.querySelector('form#myForm');
-const outputDiv = document.querySelector('div#output');
-
-nameForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const formData = new FormData(nameForm);
-  const userName = formData.get('userName').trim();
-  const spiritAnimalName = getSpiritAnimalName(userName);
-  console.log(spiritAnimalName);
-
-  outputDiv.innerHTML = `<h3> ${spiritAnimalName}.</h3>`;
-});
-
 const spiritAnimals = [
   'Aggression of alligator',
   'The ant determination',
@@ -51,16 +37,64 @@ const spiritAnimals = [
 ];
 
 function getSpiritAnimalName(userName) {
-  const spiritAnimal = `${spiritAnimals[Math.floor(Math.random() * spiritAnimals.length)]}`;
-  if (userName) {
-    if (userName === 'new spirit animal') {
-      return `${spiritAnimal}`;
-    } else {
-      return `${userName} - ${spiritAnimal}`;
-    }
-  } else if ((userName = ' ')) {
-    return `Please enter your name`;
+  userName = userName.trim();
+  if (!userName) {
+    return `Please type your name`;
   }
 
-  // return `${userName} - ${spiritAnimal}`;
+  const spiritAnimal = `${spiritAnimals[Math.floor(Math.random() * spiritAnimals.length)]}`;
+
+  return `Your spirit animal name is: "${userName} - ${spiritAnimal}"`;
 }
+
+const nameForm = document.querySelector('form#myForm');
+const outputDiv = document.querySelector('div#output');
+const nameInput = document.querySelector('input[name="userName"]');
+
+function refreshOutput() {
+  const formData = new FormData(nameForm);
+  const userName = formData.get('userName');
+  const spiritAnimalName = getSpiritAnimalName(userName);
+  // console.log(spiritAnimalName);
+
+  outputDiv.innerHTML = `<h3> ${spiritAnimalName}.</h3>`;
+}
+
+// ======= Form submit handler
+const onFormSubmit = (e) => {
+  e.preventDefault();
+  refreshOutput();
+};
+
+const onHover = () => refreshOutput();
+
+const onTextChange = () => refreshOutput();
+
+// ========= Event type change handler
+const onEventTypeChange = () => {
+  const selectedEvent = eventSelector.value;
+
+  if (selectedEvent === 'onSubmit') {
+    nameForm.addEventListener('submit', onFormSubmit);
+    nameInput.removeEventListener('mouseover', onHover);
+    nameInput.removeEventListener('change', onTextChange);
+  } else if (selectedEvent === 'onHover') {
+    nameInput.addEventListener('mouseover', onHover);
+    nameForm.removeEventListener('submit', onFormSubmit);
+    nameInput.removeEventListener('change', onTextChange);
+  } else if (selectedEvent === 'onTextChange') {
+    nameInput.addEventListener('change', onTextChange);
+    nameForm.removeEventListener('submit', onFormSubmit);
+    nameInput.removeEventListener('mouseover', onHover);
+  } else {
+    nameForm.removeEventListener('submit', onFormSubmit);
+    nameInput.removeEventListener('mouseover', onHover);
+    nameInput.removeEventListener('change', onTextChange);
+  }
+};
+
+const eventSelector = document.querySelector('select#eventSelector');
+eventSelector.addEventListener('change', onEventTypeChange);
+
+// ====== for registering events listeners on page load
+onEventTypeChange();

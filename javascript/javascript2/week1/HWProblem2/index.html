@@ -11,6 +11,15 @@
     <h1>
       Open Developer tool of your browser to see JavaScript output.
     </h1>
+    <div>
+      <select id="eventSelector" style="margin-bottom: 1rem;">
+        <option value="">-- Select one --</option>
+
+        <option value="onSubmit">When I submit the form</option>
+        <option value="onHover" selected>When I hover over input</option>
+        <option value="onTextChange">When I change input text</option>
+      </select>
+    </div>
 
     <form id="myForm">
       <input name="userName" type="text" placeholder="Enter your name here" />
