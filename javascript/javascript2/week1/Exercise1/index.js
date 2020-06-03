@@ -7,7 +7,7 @@ const div = document.createElement('div');
 div.innerHTML = 'new div';
 
 const body = document.querySelector('body');
-body.appendChild(div);
+// body.appendChild(div);
 
 const secondaryHeading = document.querySelector('h1#secondaryHeading');
 const myButton = document.querySelector('button');

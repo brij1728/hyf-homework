@@ -45,7 +45,7 @@ function podcast() {
     const h1 = document.createElement('h1');
     h1.appendChild(document.createTextNode(podcast.name));
     console.log(h1);
-    // debugger;
+    debugger;
     li.appendChild(h1);
 
     if (podcast.imageUrl) {
