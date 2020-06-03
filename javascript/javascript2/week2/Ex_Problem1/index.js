@@ -10,10 +10,8 @@ console.log(randomIntFromInterval(2, 8));
 console.log(randomIntFromInterval(12, 28));
 console.log(randomIntFromInterval(32, 58));
 
-const listings = [];
-
 function generateListing(numberOfListing) {
-  // const listings = [];
+  const listings = [];
 
   const listingType = ['House', 'Apartment', 'Shed', 'Dorm', 'Farm'];
   const listingFacilities = ['Parkering', 'Elevator', 'Altan', 'Have', 'Husdyr'];
@@ -92,3 +90,6 @@ const filter = {
 const farmListings = filterListings(listings, filter);
 
 console.log(farmListings);
+
+console.log('hello, i am going home');
+console;
