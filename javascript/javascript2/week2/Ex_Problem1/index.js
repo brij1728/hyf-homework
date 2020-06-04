@@ -47,7 +47,7 @@ function generateListing(numberOfListing) {
   // listings.forEach(() => console.log(generateListing(37)));
 }
 
-console.log(generateListing(37));
+const listings = generateListing(7);
 
 console.log(listings);
 
@@ -83,13 +83,24 @@ console.log(listHavetype);
 // 1. Filter Listing
 // const listings = generateListings(20);
 
-const filter = {
+const filter1 = {
   type: 'farm',
 };
+const x = listings.filter(() => filter1.type);
+console.log(filter1);
 
-const farmListings = filterListings(listings, filter);
+// const farmListings = filterListings(listings, filter);
 
-console.log(farmListings);
-
-console.log('hello, i am going home');
+const filterListings = (listings, filter1) => {
+  const filteredArray = [];
+  listings.forEach((list) => list.filter1.type === 'Farm');
+  // if (listings.includes(filter1)) {
+  //   for (let i = 0; i < listings.length; i++) {
+  //     const currentItem = listings[i];
+  //     console.log(currentItem);
+  //   }
+  // }
+};
+console.log(filterListings(listings, filter1));
+console.log(listings.length);
 console;

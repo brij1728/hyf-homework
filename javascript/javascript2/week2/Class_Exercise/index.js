@@ -94,3 +94,14 @@ const country = {};
 country.name = 'India';
 country.capital = 'New Delhi';
 console.log(country);
+
+const mapped = mentors.map((mentor) => {
+  const { yearOfExperience, ...rest } = mentor;
+
+  return {
+    ...rest,
+    country: 'India',
+    hobby: ['music', 'basketball', 'dancing'],
+  };
+});
+console.log(mapped);
