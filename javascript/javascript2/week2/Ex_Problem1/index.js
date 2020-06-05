@@ -47,7 +47,7 @@ function generateListing(numberOfListing) {
   // listings.forEach(() => console.log(generateListing(37)));
 }
 
-const listings = generateListing(7);
+const listings = generateListing(37);
 
 console.log(listings);
 
@@ -65,12 +65,13 @@ console.log(cheapListings);
 
 // 2. Create an array of expensize listings prices. Each item in this array should be of type number
 
-const expensizeListingPrices = [];
-listings.filter((list) => {
-  if (list.price > 6000) {
-    return expensizeListingPrices.push(list.price);
-  }
-});
+const expensizeListingPrices = listings
+  .filter((list) => {
+    return list.price > 6000;
+  })
+  .map((list) => {
+    return list.price;
+  });
 console.log(expensizeListingPrices);
 // 3. Create an array of listings that have parking. Each item in this array should be of type object
 const listHaveParking = listings.filter((list) => list.facilities.includes('Parkering'));
@@ -83,24 +84,70 @@ console.log(listHavetype);
 // 1. Filter Listing
 // const listings = generateListings(20);
 
-const filter1 = {
-  type: 'farm',
-};
-const x = listings.filter(() => filter1.type);
-console.log(filter1);
+function filterlistings(houseListings, filterObject) {
+  return houseListings.filter((house) => {
+    if (filterObject.type !== undefined) {
+      if (house.type.toLocaleLowerCase().trim() !== filterObject.type.toLocaleLowerCase().trim()) {
+        return false;
+      }
+    }
 
-// const farmListings = filterListings(listings, filter);
+    // filter by "hasGarden"
+    if (filterObject.hasGarden !== undefined) {
+      if (house.hasGarden !== filterObject.hasGarden) {
+        return false;
+      }
+    }
 
-const filterListings = (listings, filter1) => {
-  const filteredArray = [];
-  listings.forEach((list) => list.filter1.type === 'Farm');
-  // if (listings.includes(filter1)) {
-  //   for (let i = 0; i < listings.length; i++) {
-  //     const currentItem = listings[i];
-  //     console.log(currentItem);
-  //   }
-  // }
+    // filter by "minPrice"
+    if (filterObject.minPrice !== undefined) {
+      if (house.price < filterObject.minPrice) {
+        return false;
+      }
+    }
+
+    // filter by "maxPrice"
+    if (filterObject.maxPrice !== undefined) {
+      if (house.price > filterObject.maxPrice) {
+        return false;
+      }
+    }
+    return true;
+  });
+}
+
+const filterObject = {
+  type: 'SHED',
+  hasGarden: true,
+  minPrice: 500,
+  maxPrice: 4000,
 };
-console.log(filterListings(listings, filter1));
-console.log(listings.length);
-console;
+
+const houseListings = generateListing(20000);
+console.log(filterlistings(houseListings, filterObject));
+
+function renderListings(houseListings) {
+  const ul = document.createElement('ul');
+  for (const list of houseListings) {
+    const li = document.createElement('li');
+    const h2 = document.createElement('h2');
+    const p1 = document.createElement('p');
+    const p2 = document.createElement('p');
+
+    p1.innerHTML = list.price;
+    p2.innerHTML = list.hasGarden;
+    h2.innerHTML = list.type;
+
+    li.appendChild(h2);
+    li.appendChild(p1);
+    li.appendChild(p2);
+
+    ul.appendChild(li);
+  }
+
+  document.querySelector('body').appendChild(ul);
+}
+
+const myButton = document.querySelector('button');
+
+myButton.addEventListener('click', renderListings(houseListings));
