@@ -123,31 +123,29 @@ const filterObject = {
   maxPrice: 4000,
 };
 
-const houseListings = generateListing(20000);
-console.log(filterlistings(houseListings, filterObject));
+// Render listings
+// Now create a function called renderListings. It should have one parameter:
+// listings. When called the function should render the listings in an html list.
 
-function renderListings(houseListings) {
+function renderHouseListings(listings) {
+  const outputDiv = document.querySelector('div#output');
+  outputDiv.innerHTML = '';
+
   const ul = document.createElement('ul');
-  for (const list of houseListings) {
+  outputDiv.appendChild(ul);
+
+  listings.forEach((house) => {
     const li = document.createElement('li');
-    const h2 = document.createElement('h2');
-    const p1 = document.createElement('p');
-    const p2 = document.createElement('p');
-
-    p1.innerHTML = list.price;
-    p2.innerHTML = list.hasGarden;
-    h2.innerHTML = list.type;
-
-    li.appendChild(h2);
-    li.appendChild(p1);
-    li.appendChild(p2);
-
     ul.appendChild(li);
-  }
 
-  document.querySelector('body').appendChild(ul);
+    li.innerHTML = `<h2>${house.type}</h2><span>Price: ${house.price}</span></br><span>Facilities: ${house.facilities}</span>`;
+  });
 }
 
 const myButton = document.querySelector('button');
 
-myButton.addEventListener('click', renderListings(houseListings));
+myButton.addEventListener('click', () => {
+  const houseListings = generateListing(2000);
+  const filteredListings = filterlistings(houseListings, filterObject);
+  renderHouseListings(filteredListings);
+});
