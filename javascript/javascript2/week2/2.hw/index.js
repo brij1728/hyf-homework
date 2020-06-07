@@ -1,20 +1,5 @@
+'use strict';
 // Working with movies
-/*
-
-
-
-
-
-
-Create an array of movies where a word in the title is duplicated. Fx "Star Wars: 
-The Clone Wars" the word Wars is duplicated. Here are some madeup examples of 
-movies with duplicated words in the title: "The three men and the pistol", 
-"Chase three - The final chase"
-Calculate the average rating of all the movies using reduce. Optional
-Count the total number of Good, Average and Bad movies using reduce. A return 
-could fx be {goodMovies: 33, averageMovies: 45, goodMovies: 123} Optional
-*/
-
 // Create an array of movies containing the movies with a short title
 const moviesWithShortTitle = movies.filter((m) => m.title.length <= 15).map((m) => m.title);
 console.log(moviesWithShortTitle);
@@ -74,7 +59,7 @@ console.log(moviesName);
 
 const keywords = ['Surfer', 'Alien', 'Benjamin'];
 
-const movieWithkeywords = movies.filter((m) => movieContainKeywords(m.title));
+const movieWithKeywords = movies.filter((m) => movieContainKeywords(m.title));
 
 function movieContainKeywords(title) {
   // console.log(title);
@@ -87,4 +72,68 @@ function movieContainKeywords(title) {
   });
 }
 
-console.log(movieWithkeywords);
+console.log(movieWithKeywords);
+
+/* 
+Create an array of movies where a word in the title is duplicated. Fx "Star Wars: 
+The Clone Wars" the word Wars is duplicated. Here are some madeup examples of 
+movies with duplicated words in the title: "The three men and the pistol", 
+"Chase three - The final chase" */
+
+function splitIntoWords(text, ignoreCase = false) {
+  if (ignoreCase) {
+    text = text.toLocaleLowerCase();
+  }
+  return text.split(/[^a-z0-9]+/gi).filter((x) => x.length > 1);
+}
+// console.log(splitIntoWords('The is not the man is man'));
+// console.log(splitIntoWords('The is not the man is man', true));
+// const text = 'He is coming home';
+// text.toLocaleLowerCase();
+// console.log(text.split());
+// const df = text.split(/[^a-z0-9]+/gi);
+// console.log(df);
+// console.log(text);
+
+const splitMoviesName = movies.map((m) => splitIntoWords(m.title, true));
+const movieWithDuplicateWord = splitMoviesName.filter((m) => {
+  return m.some((item, index) => {
+    if (m.indexOf(item) !== index) {
+      return true;
+    }
+  });
+});
+console.log(splitMoviesName);
+console.log(movieWithDuplicateWord);
+
+// filtering duplicate word from splitArray
+// function duplicatesWordMovies(array) {
+//   array.filter((m) => {
+//     return m.some((item, index) => {
+//       if (m.indexOf(item) !== index) {
+//         return true;
+//       }
+//     });
+//   });
+// }
+
+// // movieName contains duplicate word
+// const duplicatesMovies = movies
+//   .filter((m) => {
+//     const splitMoviesName = splitIntoWords(m.title, true);
+//     duplicatesWordMovies(splitMoviesName);
+//   })
+//   .map((m) => m.title);
+
+// console.log(duplicatesMovies);
+
+// Count the total number of Good, Average and Bad movies using reduce. A return
+// could fx be {goodMovies: 33, averageMovies: 45, goodMovies: 123} Optional
+
+const filterObject = {
+  badMovies: movies.filter((m) => m.rating < 4).length,
+  averageMovies: movies.filter((m) => m.rating >= 4 && m.rating < 7).length,
+  goodMovies: movies.filter((m) => m.rating >= 7).length,
+};
+
+console.log(filterObject);
