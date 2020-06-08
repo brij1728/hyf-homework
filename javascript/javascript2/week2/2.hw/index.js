@@ -103,19 +103,8 @@ const movieWithDuplicateWord = splitMoviesName.filter((m) => {
     }
   });
 });
-console.log(splitMoviesName);
-console.log(movieWithDuplicateWord);
-
-// filtering duplicate word from splitArray
-function duplicatesWordMovies(array) {
-  array.filter((m) => {
-    return m.some((item, index) => {
-      if (m.indexOf(item) !== index) {
-        return true;
-      }
-    });
-  });
-}
+// console.log(splitMoviesName);
+// console.log(movieWithDuplicateWord);
 
 const moviesWithDuplicateWords = movies
   .map((m) => ({ ...m, wordsInTitle: splitIntoWords(m.title, true) }))
@@ -123,16 +112,6 @@ const moviesWithDuplicateWords = movies
   .map((m) => m.title);
 
 console.log(`moviesWithDuplicateWords: ${moviesWithDuplicateWords}`);
-
-// // movieName contains duplicate word
-const duplicatesMovies = movies
-  .filter((m) => {
-    const splitMoviesName = splitIntoWords(m.title, true);
-    duplicatesWordMovies(splitMoviesName);
-  })
-  .map((m) => m.title);
-
-// console.log(duplicatesMovies);
 
 // Count the total number of Good, Average and Bad movies using reduce. A return
 // could fx be {goodMovies: 33, averageMovies: 45, goodMovies: 123} Optional
@@ -145,43 +124,5 @@ const filterObject = {
 
 console.log(filterObject);
 
-// //
-
-// function splitIntoWords(str, ignoreCase = false) {
-//   if (ignoreCase) {
-//     str = str.toLocaleLowerCase();
-//   }
-//   return str.split(/[^a-z0-9]+/gi);
-// }
-// ​
-// function findDuplicateWords(title, ignoreCase = false) {
-//   const wordsArray = splitIntoWords(title, ignoreCase);
-//   const countsDict = {};
-// ​
-//   const duplicateWords = [];
-// ​
-//   for (const word of wordsArray) {
-//     if (!countsDict[word]) {
-//       countsDict[word] = 1;
-//     } else {
-//       countsDict[word] += 1;
-//       duplicateWords.push(word);
-//     }
-//   }
-// ​
-//   if (duplicateWords.length) {
-//     return duplicateWords;
-//   }
-// }
-// ​
-// console.log(findDuplicateWords('Star Wars: The Clone Wars'));
-// // [ 'Wars' ]
-// ​
-// console.log(findDuplicateWords('Hello heLLo'));
-// // undefined
-// ​
-// console.log(findDuplicateWords('Hello heLLo', true));
-// // [ 'hello' ]
-// ​
-// console.log(findDuplicateWords('I am so: unique! roger that!!!'));
-// // undefined
+const moviesWith = movies.map((m) => ({ ...m, wordsInTitle: 'Disney Land' }));
+console.log(moviesWith);

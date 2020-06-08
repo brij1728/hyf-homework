@@ -104,30 +104,6 @@ const mapped = mentors.map((mentor) => {
     hobby: ['music', 'basketball', 'dancing'],
   };
 });
+const map = mentors.map((mentor) => ({ ...mentor, country: 'India', hobby: ['music', 'basketball', 'dancing'] }));
 console.log(mapped);
-
-// Programme to clear concept of object and array
-console.log('Javascript was loaded succesfully!');
-console.log('Javascript was loaded succesfully!67');
-let people = [];
-let person1 = {
-  name: 'Mnaish',
-  age: 34,
-  cityName: 'New Delhi',
-};
-let person2 = {
-  name: 'satish',
-  age: 90,
-  cityName: 'jaipur',
-};
-people.push(person1);
-people.push(person2);
-console.log(people);
-// for(i=0;i<3;i++){
-// ​
-// 	people.push(person[i]);
-// 	console.log(people[i]);
-for (i = 0; i < 3; i++) {
-  people.push(person[i]);
-  console.log(people);
-}
+console.log(map);

@@ -1,8 +1,11 @@
+'use strict';
+
 console.log('Script loaded');
 
 const products = getAvailableProducts();
+console.log(products);
 const productsUl = document.querySelector('section.products ul');
-console.log(productsUl);
+// console.log(productsUl);
 
 function renderProducts(products) {
   products.forEach((product) => {
