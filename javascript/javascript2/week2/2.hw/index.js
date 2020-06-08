@@ -84,7 +84,7 @@ function splitIntoWords(text, ignoreCase = false) {
   if (ignoreCase) {
     text = text.toLocaleLowerCase();
   }
-  return text.split(/[^a-z0-9]+/gi).filter((x) => x.length > 1);
+  return text.split(/[^a-z0-9]+/gi).filter((x) => x.length > 0);
 }
 // console.log(splitIntoWords('The is not the man is man'));
 // console.log(splitIntoWords('The is not the man is man', true));
@@ -107,23 +107,30 @@ console.log(splitMoviesName);
 console.log(movieWithDuplicateWord);
 
 // filtering duplicate word from splitArray
-// function duplicatesWordMovies(array) {
-//   array.filter((m) => {
-//     return m.some((item, index) => {
-//       if (m.indexOf(item) !== index) {
-//         return true;
-//       }
-//     });
-//   });
-// }
+function duplicatesWordMovies(array) {
+  array.filter((m) => {
+    return m.some((item, index) => {
+      if (m.indexOf(item) !== index) {
+        return true;
+      }
+    });
+  });
+}
+
+const moviesWithDuplicateWords = movies
+  .map((m) => ({ ...m, wordsInTitle: splitIntoWords(m.title, true) }))
+  .filter((m) => m.wordsInTitle.some((w, i, array) => w.length > 2 && array.indexOf(w) !== i))
+  .map((m) => m.title);
+
+console.log(`moviesWithDuplicateWords: ${moviesWithDuplicateWords}`);
 
 // // movieName contains duplicate word
-// const duplicatesMovies = movies
-//   .filter((m) => {
-//     const splitMoviesName = splitIntoWords(m.title, true);
-//     duplicatesWordMovies(splitMoviesName);
-//   })
-//   .map((m) => m.title);
+const duplicatesMovies = movies
+  .filter((m) => {
+    const splitMoviesName = splitIntoWords(m.title, true);
+    duplicatesWordMovies(splitMoviesName);
+  })
+  .map((m) => m.title);
 
 // console.log(duplicatesMovies);
 
@@ -137,3 +144,44 @@ const filterObject = {
 };
 
 console.log(filterObject);
+
+// //
+
+// function splitIntoWords(str, ignoreCase = false) {
+//   if (ignoreCase) {
+//     str = str.toLocaleLowerCase();
+//   }
+//   return str.split(/[^a-z0-9]+/gi);
+// }
+// ​
+// function findDuplicateWords(title, ignoreCase = false) {
+//   const wordsArray = splitIntoWords(title, ignoreCase);
+//   const countsDict = {};
+// ​
+//   const duplicateWords = [];
+// ​
+//   for (const word of wordsArray) {
+//     if (!countsDict[word]) {
+//       countsDict[word] = 1;
+//     } else {
+//       countsDict[word] += 1;
+//       duplicateWords.push(word);
+//     }
+//   }
+// ​
+//   if (duplicateWords.length) {
+//     return duplicateWords;
+//   }
+// }
+// ​
+// console.log(findDuplicateWords('Star Wars: The Clone Wars'));
+// // [ 'Wars' ]
+// ​
+// console.log(findDuplicateWords('Hello heLLo'));
+// // undefined
+// ​
+// console.log(findDuplicateWords('Hello heLLo', true));
+// // [ 'hello' ]
+// ​
+// console.log(findDuplicateWords('I am so: unique! roger that!!!'));
+// // undefined
