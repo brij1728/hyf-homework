@@ -63,7 +63,7 @@ function myFavoriteDishIs() {
     div.appendChild(ul);
   }
 
-  debugger;
+  // debugger;
 }
 
 // const greet = (message, ...subjects) => console.log(message + ',\n' + subjects.join(',\n'));
