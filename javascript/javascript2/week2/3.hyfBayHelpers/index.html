@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+  <title>HyfBay</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="index.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet" />
+</head>
+<body>
+  <main>
+    <!-- ---searching product --- -->
+    <div class="productName">
+      <label> What are you looking for?</label>
+      <input id="searchProduct" name="searchPro" type="text" placeholder="Search for a product" />
+    </div>
+    <div class="price">
+      <label> Set maximum price</label>
+      <input id="searchPrice" name="searchPro" type="search" placeholder="Set maximum price" />
+    </div>
+
+    <div class="sort">
+      <label>Sort product:</label>
+      <select>
+        <option value="">--Please choose an option--</option>
+        <option value="cheap">Cheap Product</option>
+        <option value="expensive">Expensive Product</option>
+        <option value="name">Sort by name</option>
+      </select>
+    </div>
+    <div class="products">
+      <ul></ul>
+    </div>
+  </main>
+
+  <script src="hyfBayHelpers.js"></script>
+  <script src="index.js"></script>
+</body>
