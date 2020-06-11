@@ -28,8 +28,9 @@ priceSearch.addEventListener('input', refreshOutput);
 // sorting products
 const sortProducts = document.querySelector('.sort select');
 console.log(sortProducts.value);
-sortProducts.addEventListener('change', sortingProducts);
+sortProducts.addEventListener('change', refreshOutput);
 
+// filtering products
 function filterProducts(products, filterObject) {
   return products.filter((product) => {
     // filter by name
@@ -86,7 +87,10 @@ function refreshOutput() {
   const output = document.querySelector('div.products ul');
   output.innerHTML = '';
 
-  const filteredProducts = filterProducts(products, getFilters());
+  // const filteredProducts = filterProducts(products, getFilters());
+  const sortedProduct = sortingProducts(products, sortProducts.value);
+  const filteredProducts = filterProducts(sortedProduct, getFilters());
+
   renderProducts(filteredProducts);
 }
 
@@ -96,41 +100,33 @@ refreshOutput();
 // product sorting function
 const x = products.sort((a, b) => a.price - b.price);
 console.log(x);
-function sortingProducts() {
-  const sortValue = sortProducts.value;
+function sortingProducts(productList, sortValue) {
+  productList = [...productList];
   console.log(sortValue);
-  {
-    // sorting cheap products
-    if (sortValue === 'cheap') {
-      const cheapProducts = products.sort((a, b) => a.price - b.price);
-      renderProducts(cheapProducts);
-    }
 
-    // sorting expensive products
-    if (sortValue === 'expensive') {
-      const expensiveProducts = products.sort((a, b) => a.price - b.price);
-      renderProducts(expensiveProducts);
-    }
-
-    // sorting products by their name
-    if (sortValue === 'name') {
-      const sortProductNames = products.sort((a, b) => {
-        const nameA = a.name.toLocaleUpperCase();
-        const nameB = b.name.toLocaleUpperCase();
-        if (nameA < nameB) {
-          return -1;
-        }
-        if (nameA > nameB) {
-          return 1;
-        }
-        // must be equal
+  // sorting cheap products
+  if (sortValue === 'cheap') {
+    return productList.sort((a, b) => a.price - b.price);
+  } else if (sortValue === 'expensive') {
+    return productList.sort((a, b) => b.price - a.price);
+  } else if (sortValue === 'rating') {
+    return productList.sort((a, b) => b.rating - a.rating);
+  } else if (sortValue === 'name') {
+    return productList.sort((a, b) => {
+      const nameA = a.name.toLocaleUpperCase();
+      const nameB = b.name.toLocaleUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      } else if (nameA > nameB) {
+        return 1;
+      } else {
         return 0;
-      });
-      renderProducts(sortProductNames);
-    } else {
-      renderProducts(products);
-    }
+      }
+    });
   }
+
+  return productList;
 }
 
-sortingProducts();
+// sorting event handler
+const onEventTypeChange = () => {};

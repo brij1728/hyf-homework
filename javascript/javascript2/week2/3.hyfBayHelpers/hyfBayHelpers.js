@@ -40,7 +40,7 @@ window.getAvailableProducts = function () {
     return chosenProductName;
   }
 
-  const numberOfAvailableProducts = getRandomInt(0, 30);
+  const numberOfAvailableProducts = getRandomInt(200, 500);
   const availableProducts = Array.apply(null, Array(numberOfAvailableProducts)).map(() => {
     const name = getRandomProductname();
     return {
