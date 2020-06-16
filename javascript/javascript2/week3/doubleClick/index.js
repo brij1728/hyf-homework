@@ -1,3 +1,4 @@
+'use strict';
 /*  
 Check if we have double clicked on the page. A double click is defined by two 
 clicks within 0.5 seconds. If a double click has been detected, log out the 
@@ -9,7 +10,7 @@ window.addEventListener('click', handleSingleDoubleClick, false);
 function handleSingleDoubleClick() {
   if (!count) {
     setTimeout(timerFunction, 500);
-  } // 400 ms click delay
+  } // 500 ms click delay
   count += 1;
 }
 function timerFunction() {
