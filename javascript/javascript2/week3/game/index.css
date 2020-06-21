@@ -1,3 +1,16 @@
 h1 {
-    color: peru;
+  color: peru;
+}
+
+.v-divider {
+  border-left: 5px solid black;
+  height: 500px;
+  position: absolute;
+  left: 50%;
+  margin: 0;
+  top: 139px;
+}
+
+.pressL {
+  left: 60%;
 }

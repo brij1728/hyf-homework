@@ -14,7 +14,7 @@ functionsArray.forEach((fn, index) => {
   const fnArgs = argumentsArray[index];
   // console.log(fnArgs);
   // console.log(fn(...fnArgs));
-  console.log(`fn = ${fn}\n\t>> fnArgs = ${fnArgs}\n\t>> result is ${fn(...fnArgs)}`);
+  console.log(`fn = ${fn}\n\t>> fnArgs = ${fnArgs}\n\t>> result is`, fn(...fnArgs));
 });
 
 // function of adding numbers
@@ -28,7 +28,7 @@ function add(...numbers) {
 function multiply(multiplier, ...numbers) {
   return numbers.map((number) => {
     return multiplier * number;
-  }, 0);
+  });
 }
 
 console.log(multiply(2, 3, 4, 5, 6));
@@ -37,7 +37,7 @@ console.log(add(1, 2, 3, 4, 5, 6));
 function division(divider, ...numbers) {
   return numbers.map((number) => {
     return (number / divider).toFixed(3);
-  }, 0);
+  });
 }
 
 console.log(division(3, 6, 9, 14, 15));

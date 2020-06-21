@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework week-2</title>
-    <link rel="stylesheet" href="./index.css">
-</head>
-<body>
-    <h1>Open Developer tool of your browser to see JavaScript output.</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Key Game</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <h1>Fastest Presser</h1>
+    <p></p>
+    <input type="number" placeholder="Set seconds" />
+    <br />
+    <button>Start Game</button>
+    <p class="timer"></p>
+    <p class="result"></p>
+    <hr />
+    <div class="row">
+      <div class="pressS">Press S</div>
+      <div class="v-divider"></div>
+      <div class="pressL">Press L</div>
+    </div>
+    <canvas id="my-canvas"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.13/dist/index.min.js"></script>
     <script src="./index.js"></script>
-</body>
+  </body>
 </html>

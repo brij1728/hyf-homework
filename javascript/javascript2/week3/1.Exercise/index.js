@@ -20,3 +20,9 @@ function countUp() {
 button1.addEventListener('click', countUp);
 
 button2.addEventListener('click', countUp);
+
+// Delay clicker
+// Create a button in html with the text "Log in 3 seconds"
+
+// When the button is clicked it should wait 3 seconds and then log the text
+//  "This text was delayed by 3 seconds".

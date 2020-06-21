@@ -1,0 +1,32 @@
+div > p {
+  height: 75%;
+  width: 75%;
+  background-color: #bbbbaa;
+}
+
+p.technology {
+  font-size: 16px;
+  line-height: 1.6em;
+  word-spacing: 0.2em;
+  text-align: justify;
+  text-shadow: rgb(234, 123, 145);
+  border-width: 2px;
+  width: 60em;
+  height: 10em;
+}
+
+p.technology::first-letter {
+  font-size: 200%;
+}
+
+/* p.technology {
+  overflow: hidden;
+} */
+p.corona.box {
+  font-size: 16px;
+  line-height: 1.6em;
+  word-spacing: 0.2em;
+  text-align: justify;
+  text-shadow: rgb(234, 123, 145);
+  border-width: 1px 4px 8px 4px;
+}

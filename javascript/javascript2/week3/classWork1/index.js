@@ -96,6 +96,7 @@ console.log(factorial(1));
 //   }
 // }
 
+// calculate the squares of sum
 function addSquares(...number) {
   return number.reduce((sum, x) => {
     return sum + x * x;
