@@ -8,24 +8,25 @@
   </head>
   <body>
     <h1>Weather data of city</h1>
-    <div>
-      <input id="city" type="text" />
-    </div>
-    <button>click button</button>
-    <div class="weather">
-      <div id="cityName"></div>
-      <div id="temperature"></div>
-      <div id="windSpeed"></div>
-      <div id="sunrise"></div>
-      <div id="sunset"></div>
-    </div>
-    <div>
-      <div id="icon"></div>
-    </div>
-    <div>
-      <p id="status"></p>
-      <a id="map-link" target="_blank"></a>
-      <div id="map" class="map"></div>
+    <div class="container">
+      <div class="app-title">
+        <p>Weather</p>
+      </div>
+      <div class="notification"></div>
+      <div class="weather-container">
+        <div class="weather-icon">
+          <img src="icons/unknown.png" alt="" />
+        </div>
+        <div class="temperature-value">
+          <p>- °<span>C</span></p>
+        </div>
+        <div class="temperature-description">
+          <p>-</p>
+        </div>
+        <div class="location">
+          <p>-</p>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>

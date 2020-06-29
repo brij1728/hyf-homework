@@ -7,16 +7,34 @@
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <h1>Dog Fan image</h1>
-    <button>Click for dog fan image</button>
-    <div class="dog">
-      <select type="text">
-        <option value="">--Select any breed</option>
-        <option value="breed-name">Dog breed name</option>
-      </select>
-    </div>
-    <div id="output"></div>
-    <div id="dogName"></div>
+    <header>
+      <h1>Dog Fan image</h1>
+    </header>
+    <main>
+      <section class="dog">
+        <section>
+          <label>Select any dog breed:</label>
+          <select class="dog-breed" type="text">
+            <option>Select any breed</option>
+          </select>
+        </section>
+
+        <section>
+          <!-- <p>Choose any features:</p>
+          <input type="checkbox" id="random-dog-image" name="dog-image" value="random-dog-image" />
+          <label for="random-dog-image">Random dog image</label> -->
+
+          <input type="checkbox" id="interval-image" name="dog-image" value="interval-image" />
+          <label for="interval-image">New image every 2 seconds</label>
+        </section>
+      </section>
+
+      <section>
+        <button>Click for image</button>
+      </section>
+
+      <section id="output"></section>
+    </main>
     <script src="./index.js"></script>
   </body>
 </html>

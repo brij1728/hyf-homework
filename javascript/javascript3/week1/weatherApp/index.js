@@ -12,51 +12,96 @@ function fetchJsonData(url) {
   return fetch(url).then((response) => response.json());
 }
 
-// selecting city through user input
-function selectCity() {
-  let cityName = document.querySelector('#city');
-  if (cityName !== undefined) {
-    return cityName.value.toLocaleLowerCase();
-  }
+// SELECT ELEMENTS
+const iconElement = document.querySelector('.weather-icon');
+const tempElement = document.querySelector('.temperature-value p');
+const descElement = document.querySelector('.temperature-description p');
+const locationElement = document.querySelector('.location p');
+const notificationElement = document.querySelector('.notification');
+
+// App data
+const weather = {};
+
+weather.temperature = {
+  unit: 'celsius',
+};
+
+// app constant and key
+const KELVIN = 273;
+const key = '044ebd39bd5fc8fd6027982d8916eb7f';
+
+// // check if browser support geolocation
+if (!navigator.geolocation) {
+  notificationElement.style.display = 'block';
+  notificationElement.innerHTML = `<p>Browser doesn't support Geolocation</p>`;
+} else {
+  navigator.geolocation.getCurrentPosition(setPosition, showError);
 }
 
-// city weather data function
-function cityWeatherData() {
-  const cityName = selectCity();
+// set user position
+function setPosition(position) {
+  const latitude = position.coords.latitude;
+  const longitude = position.coords.longitude;
 
-  const key = '044ebd39bd5fc8fd6027982d8916eb7f';
+  getWeather(latitude, longitude);
+}
 
-  const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + key;
+// show error when there is any issue with geolocation
+function showError(error) {
+  const notificationElement = document.querySelector('.notification');
+  notificationElement.style.display = 'block';
+  notificationElement.innerHTML = `<p>${error.message}</p>`;
+}
 
-  fetchJsonData(url).then((data) => {
-    console.log('response', data);
-    displayWeatherData(data);
+function showMap() {
+  const latitude = data.coords.latitude;
+  const longitude = data.coords.longitude;
+  const outputMap = document.querySelector('.map');
+  outputMap.innerHTML = '';
+  const map = new ol.Map({
+    target: outputMap,
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.OSM(),
+      }),
+    ],
+    view: new ol.View({
+      center: ol.proj.fromLonLat([longitude, latitude]),
+      zoom: 14,
+    }),
   });
 }
 
-// rendering weather data
-function displayWeatherData(data) {
-  document.querySelector('#cityName').innerHTML = `City: ${data.name}, ${data.sys.country}`;
+function getWeather(latitude, longitude) {
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}$lon=${longitude}&appid=${key}`;
 
-  const celcius = Math.round(parseFloat(data.main.temp - 273));
-  document.querySelector('#temperature').innerHTML = `Temperature: ${celcius} ℃`;
-
-  const windSpeed = Math.round(parseFloat(data.wind.speed * 3.6));
-  document.querySelector('#windSpeed').innerHTML = `Wind speed : ${windSpeed} km/h`;
-
-  const unixRise = data.sys.sunrise;
-  const sunriseTime = new Date(unixRise * 1000);
-  document.querySelector('#sunrise').innerHTML = `Sunrise time: ${sunriseTime}`;
-
-  const unixSet = data.sys.sunset;
-  const sunsetTime = new Date(unixSet * 1000);
-  document.querySelector('#sunset').innerHTML = `Sunset time: ${sunsetTime}`;
-
-  const iconCode = data.weather[0].icon;
-  const iconUrl = 'http://openweathermap.org/img/wn/' + iconCode + '.png';
-  document.querySelector('#icon').innerHTML = `<img src= ${iconUrl}>`;
-  console.log(sunriseTime);
+  fetchJsonData(url).then((data) => {
+    weather.temperature.value = Math.floor(data.main.tmp - KELVIN);
+    weather.description = data.weather[0].description;
+    weather.iconId = data.weather[0].icon;
+    weather.city = data.name;
+    weather.country = data.sys.country;
+  });
 }
 
-const button = document.querySelector('button');
-button.addEventListener('click', cityWeatherData);
+// selecting city through user input
+// function selectCity() {
+//   let cityName = document.querySelector('#city');
+//   if (cityName !== undefined) {
+//     return cityName.value.toLocaleLowerCase();
+//   }
+// }
+
+// city weather data function
+// function cityWeatherData() {
+//   const cityName = selectCity();
+
+//   const key = '044ebd39bd5fc8fd6027982d8916eb7f';
+
+//   const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + key;
+
+//   fetchJsonData(url).then((data) => {
+//     console.log('response', data);
+//     displayWeatherData(data);
+//   });
+// }

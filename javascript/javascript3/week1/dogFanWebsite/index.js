@@ -12,59 +12,84 @@ function fetchJsonData(url) {
   return fetch(url).then((response) => response.json());
 }
 
-function dogImage() {
-  const url = 'https://dog.ceo/api/breeds/image/random';
+// function dogImage() {
+//   const url = 'https://dog.ceo/api/breeds/image/random';
 
-  fetchJsonData(url).then((data) => {
-    console.log('response', data);
-    renderOutput(data);
-  });
-}
+//   fetchJsonData(url).then((data) => {
+//     console.log('response', data);
+//     renderOutput(data);
+//   });
+// }
 
-function renderOutput(data) {
-  const outputDiv = document.querySelector('#output');
-
-  outputDiv.innerHTML = `<h2>Dog image is </h2>
-  <div> 
-  <img src="${data.message}" alt="random dog image is here"/>
-  </div>
-  `;
-}
-
-// const button = document.querySelector('button');
-// button.addEventListener('click', dogImage);
-
-// Part 2: Get a new image every 2 sec.
-window.setInterval(dogImage, 2000);
-
-// Part 3: Get the list of all breeds from https://dog.ceo/api/breeds/list/all
-
-function dogBreedsOutput() {
+// dog breed dropdown
+function renderDogBreed() {
   const url = 'https://dog.ceo/api/breeds/list/all';
 
   fetchJsonData(url).then((data) => {
     console.log('response', data);
-    renderDogBreedsName(data);
+
+    const breeds = Object.keys(data.message);
+    for (const name of breeds) {
+      const select = document.querySelector('.dog-breed');
+      select.add(new Option(name));
+      // let element = document.createElement('option');
+      // select.appendChild(element);
+      // element.innerHTML = name;
+      // element.value = name;
+    }
+
+    // const breed = breeds[Math.floor(Math.random() * breeds.length)];
+
+    console.log(breeds);
   });
 }
 
-function renderDogBreedsName(data) {
-  const outputDiv = document.querySelector('#dogName');
-  // console.log((data.message === null) ? Object.keys(data.message): df );
-  console.log(Object.keys(data.message).join('\n'));
+renderDogBreed();
 
-  outputDiv.innerHTML = `<h2>Dog name is </h2>
-  <h3> ${Object.keys(data.message).join('<br> ')} `;
+// showing dog image
+function dogImage() {
+  const breedName = document.querySelector('.dog-breed').value;
+  console.log(breedName);
+  // const breedName = select.options[select.selectedIndex].text;
+  const url = 'https://dog.ceo/api/breed/' + breedName + '/images/random';
+
+  fetchJsonData(url).then((data) => {
+    console.log('response', data);
+
+    const output = document.querySelector('#output');
+    output.innerHTML = `<div>
+    <img src="${data.message}" alt="random dog image is here"/>
+    <p>${breedName.toUpperCase()}</p>
+    </div>`;
+  });
 }
-// const button = document.querySelector('button');
-// button.addEventListener('click', dogBreedsOutPut);
 
-// dog breed name
-// function dogBreedsName(data) {
-//   if (data.message === null) {
-//     return `${Object.keys(data.message).join(' \n')} dog`;
-//   } else {
-//     return `${Object.values(data.message).map((dog) => dog)} ${Object.keys(data.message)}`;
-//   }
+// DOM
+// const checkBox = document.querySelector('#interval-image');
+// if (checkBox.checked) {
+//   changeImage();
+// } else {
+//   dogImage();
 // }
-// dogBreedsOutPut();
+const button = document.querySelector('button');
+button.addEventListener('click', () => {
+  // const checkBox1 = document.querySelector('#random-dog-image');
+  // console.log(checkBox1.checked);
+  const checkBox = document.querySelector('#interval-image');
+  // console.log(checkBox2.checked);
+
+  if (checkBox.checked) {
+    window.setInterval(dogImage, 2000);
+  } else {
+    dogImage();
+    setTimeout(clearImage(), 2000);
+  }
+});
+// button.addEventListener('click', clearImage);
+let intervalId;
+function changeImage() {
+  intervalId = window.setInterval(dogImage, 2000);
+}
+function clearImage() {
+  clearInterval(intervalId);
+}

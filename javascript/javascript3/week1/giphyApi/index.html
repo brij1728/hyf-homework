@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework week-2</title>
-    <link rel="stylesheet" href="./index.css">
-</head>
-<body>
-    <h1>Open Developer tool of your browser to see JavaScript output.</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>giphy app</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Giphy searcher</h1>
+    </header>
+    <main>
+      <section>
+        <input id="search-word" type="text" name="searchWord" placeholder="Search for gif" />
+      </section>
+
+      <section>
+        <input id="number" type="number" name="number" placeholder="Enter number of gifs" />
+      </section>
+
+      <section>
+        <button id="search-button">Search for gif</button>
+      </section>
+
+      <section class="giphy-container">
+        <div id="searchResult"></div>
+      </section>
+    </main>
     <script src="./index.js"></script>
-</body>
+
+    <!-- <footer>
+      <section class="contact">
+        <h3>Contact us!</h3>
+        <address property="email">
+          <a href="mailto:brij10718@gmail.com">brij10718@gmail.com</a>
+        </address>
+      </section>
+    </footer> -->
+  </body>
 </html>

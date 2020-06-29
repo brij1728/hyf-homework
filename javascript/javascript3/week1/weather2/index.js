@@ -15,17 +15,31 @@ function selectCity() {
 }
 
 // city weather data function
-function showWeatherData() {
+function weatherData() {
   const cityName = selectCity();
 
   const key = '044ebd39bd5fc8fd6027982d8916eb7f';
 
   const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + key;
 
+  toggleLoader(true);
+  toggleOutputDisplay(false);
+
   fetchJsonData(url).then((data) => {
+    toggleLoader(false);
     console.log('response', data);
     displayWeatherData(data);
   });
+}
+
+function toggleLoader(isVisible) {
+  const containerDiv = document.querySelector('div.loader');
+  containerDiv.style.display = isVisible ? 'block' : 'none';
+}
+
+function toggleOutputDisplay(isVisible) {
+  const containerDiv = document.querySelector('div.container');
+  containerDiv.style.display = isVisible ? 'block' : 'none';
 }
 
 // displaying weather data weather data
@@ -49,41 +63,9 @@ function displayWeatherData(data) {
 
   document.querySelector('.location p').innerHTML = `City: ${data.name}, ${data.sys.country}`;
   console.log(sunriseTime);
+
+  toggleOutputDisplay(true);
 }
 
 const button = document.querySelector('button');
-button.addEventListener('click', showWeatherData);
-
-// // check if browser support geolocation
-// if (!navigator.geolocation) {
-//   notificationElement.style.display = 'block';
-//   notificationElement.innerHTML = `<p>Browser doesn't support Geolocation</p>`;
-// } else {
-//   navigator.geolocation.getCurrentPosition(setPosition, showError);
-// }
-
-// // show error when there is any issue with geolocation
-// function showError(error) {
-//   const notificationElement = document.querySelector('.notification');
-//   notificationElement.style.display = 'block';
-//   notificationElement.innerHTML = `<p>${error.message}</p>`;
-// }
-
-// function showMap() {
-//   const latitude = data.coords.latitude;
-//   const longitude = data.coords.longitude;
-//   const outputMap = document.querySelector('.map');
-//   outputMap.innerHTML = '';
-//   const map = new ol.Map({
-//     target: outputMap,
-//     layers: [
-//       new ol.layer.Tile({
-//         source: new ol.source.OSM(),
-//       }),
-//     ],
-//     view: new ol.View({
-//       center: ol.proj.fromLonLat([longitude, latitude]),
-//       zoom: 14,
-//     }),
-//   });
-// }
+button.addEventListener('click', weatherData);

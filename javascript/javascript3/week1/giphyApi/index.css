@@ -1,3 +1,65 @@
-h1 {
-    color: peru;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+header h1 {
+  color: #333;
+  font-family: 'Pacifico', cursive;
+  font-size: 3.5em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+main {
+  margin: 5px auto;
+  width: 600px;
+  max-height: 100px;
+  text-align: center;
+}
+
+input {
+  display: block;
+  width: 300px;
+  margin: 5px auto;
+  padding: 10px;
+  font-size: 1.1em;
+}
+
+button {
+  background: #1eb94dca;
+  color: #fff;
+  display: block;
+
+  margin: 20px auto;
+  padding: 15px;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.giphy-container {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  max-height: 80px;
+
+  margin: 20px;
+  padding: 20px;
+
+  box-shadow: 1px 1px 10px #ccc;
+
+  align-items: center;
+}
+
+footer {
+  bottom: 100;
+  width: 100%;
+  min-height: 100%;
+  text-align: center;
 }

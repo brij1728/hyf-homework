@@ -3,30 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homework week-2</title>
+    <title>weather app</title>
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <div>
-      <input id="city" type="text" />
-    </div>
-    <button>select city for weather update</button>
-    <div class="container">
-      <div class="app-title"><p>Weather</p></div>
-      <div class="notification"><p></p></div>
-      <div class="weather-container">
-        <div class="weather-icon"></div>
-        <div class="temperature-value">
-          <p>- °<span>C</span></p>
-        </div>
-        <div class="temperature-description"><p>-</p></div>
-        <div class="wind-speed"><p>-</p></div>
-        <div class="sunrise"><p>-</p></div>
-        <div class="sunset"><p>-</p></div>
+    <main>
+      <header>
+        <input id="city" type="text" placeholder="write city name" />
+        <button>Click for weather update</button>
+      </header>
 
-        <div class="location"><p>-</p></div>
+      <div class="container" style="display: none;">
+        <div class="app-title"><p>Weather</p></div>
+        <div class="notification"><p></p></div>
+        <div class="weather-container">
+          <div class="weather-icon"></div>
+          <div class="temperature-value">
+            <p>- °<span>C</span></p>
+          </div>
+          <div class="temperature-description"><p>-</p></div>
+          <div class="wind-speed"><p>-</p></div>
+          <div class="sunrise"><p>-</p></div>
+          <div class="sunset"><p>-</p></div>
+
+          <div class="location"><p>-</p></div>
+        </div>
       </div>
-    </div>
+      <div class="loader" style="display: none;">
+        <img src="https://media.giphy.com/media/QRhtqYeEywJI4/giphy.gif" />
+      </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
 
