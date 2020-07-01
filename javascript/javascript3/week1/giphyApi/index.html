@@ -10,32 +10,14 @@
     <header>
       <h1>Giphy searcher</h1>
     </header>
-    <main>
-      <section>
-        <input id="search-word" type="text" name="searchWord" placeholder="Search for gif" />
-      </section>
+    <form id="search-form">
+      <input type="text" required name="searchText" placeholder="type a keyword" />
 
-      <section>
-        <input id="number" type="number" name="number" placeholder="Enter number of gifs" />
-      </section>
+      <input type="number" required name="count" min="1" step="1" max="25" placeholder="count of gifs to be shown" />
 
-      <section>
-        <button id="search-button">Search for gif</button>
-      </section>
-
-      <section class="giphy-container">
-        <div id="searchResult"></div>
-      </section>
-    </main>
+      <button>Search</button>
+    </form>
+    <div id="output"></div>
     <script src="./index.js"></script>
-
-    <!-- <footer>
-      <section class="contact">
-        <h3>Contact us!</h3>
-        <address property="email">
-          <a href="mailto:brij10718@gmail.com">brij10718@gmail.com</a>
-        </address>
-      </section>
-    </footer> -->
   </body>
 </html>

@@ -4,14 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>weather app</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css"
+      type="text/css"
+    />
+
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <main>
-      <header>
-        <input id="city" type="text" placeholder="write city name" />
-        <button>Click for weather update</button>
-      </header>
+    <form id="city">
+      <fieldset>
+        <legend>Enter city</legend>
+        <input type="text" required name="searchCity" placeholder="write city name" />
+        <button>Click</button>
+      </fieldset>
 
       <div class="container" style="display: none;">
         <div class="app-title"><p>Weather</p></div>
@@ -29,11 +36,15 @@
           <div class="location"><p>-</p></div>
         </div>
       </div>
-      <div class="loader" style="display: none;">
-        <img src="https://media.giphy.com/media/QRhtqYeEywJI4/giphy.gif" />
-      </div>
-    </main>
+    </form>
+    <div class="loader" style="display: none;">
+      <img src="https://media.giphy.com/media/QRhtqYeEywJI4/giphy.gif" />
+    </div>
 
+    <button id="find-me">Show my location</button><br />
+    <p id="status"></p>
+    <a id="map-link" target="_blank"></a>
+    <div id="map" class="map"></div>
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
 
     <script src="./index.js"></script>

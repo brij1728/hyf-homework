@@ -12,6 +12,15 @@ function fetchJsonData(url) {
   return fetch(url).then((response) => response.json());
 }
 
+function getFormDataAsObject(formElement) {
+  const formData = new FormData(formElement);
+
+  const data = {};
+  for (const [key, value] of formData.entries()) {
+    data[key] = value;
+  }
+  return data;
+}
 // function dogImage() {
 //   const url = 'https://dog.ceo/api/breeds/image/random';
 
@@ -22,7 +31,7 @@ function fetchJsonData(url) {
 // }
 
 // dog breed dropdown
-function renderDogBreed() {
+function fetchAndUpdateBreedNames() {
   const url = 'https://dog.ceo/api/breeds/list/all';
 
   fetchJsonData(url).then((data) => {
@@ -38,19 +47,14 @@ function renderDogBreed() {
       // element.value = name;
     }
 
-    // const breed = breeds[Math.floor(Math.random() * breeds.length)];
-
     console.log(breeds);
   });
 }
-
-renderDogBreed();
+fetchAndUpdateBreedNames();
 
 // showing dog image
-function dogImage() {
-  const breedName = document.querySelector('.dog-breed').value;
+function fetchAndShowDogImage(breedName) {
   console.log(breedName);
-  // const breedName = select.options[select.selectedIndex].text;
   const url = 'https://dog.ceo/api/breed/' + breedName + '/images/random';
 
   fetchJsonData(url).then((data) => {
@@ -64,32 +68,30 @@ function dogImage() {
   });
 }
 
-// DOM
-// const checkBox = document.querySelector('#interval-image');
-// if (checkBox.checked) {
-//   changeImage();
-// } else {
-//   dogImage();
-// }
-const button = document.querySelector('button');
-button.addEventListener('click', () => {
-  // const checkBox1 = document.querySelector('#random-dog-image');
-  // console.log(checkBox1.checked);
-  const checkBox = document.querySelector('#interval-image');
-  // console.log(checkBox2.checked);
+const form = document.querySelector('form');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
 
-  if (checkBox.checked) {
-    window.setInterval(dogImage, 2000);
-  } else {
-    dogImage();
-    setTimeout(clearImage(), 2000);
-  }
+  const formData = getFormDataAsObject(form);
+  const breedName = formData.breedName;
+  const autoRefresh = formData.autoRefresh !== undefined;
+
+  // console.log(breedName, autoRefresh);
+
+  showDogImage(breedName, autoRefresh);
 });
-// button.addEventListener('click', clearImage);
-let intervalId;
-function changeImage() {
-  intervalId = window.setInterval(dogImage, 2000);
-}
-function clearImage() {
-  clearInterval(intervalId);
+
+// setInterval and clearInterval
+let intervalId = null;
+function showDogImage(breedName, autoRefresh) {
+  if (intervalId) {
+    clearInterval(intervalId);
+    intervalId = null;
+  }
+
+  if (!autoRefresh) {
+    fetchAndShowDogImage(breedName);
+  } else {
+    intervalId = setInterval(() => fetchAndShowDogImage(breedName), 2000);
+  }
 }
