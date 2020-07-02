@@ -34,23 +34,41 @@ searchCity.addEventListener('submit', (e) => {
   toggleLoader(true);
   toggleOutputDisplay(false);
 
-  fetchJsonData(url)
-    .then((data) => {
-      toggleLoader(false);
-      console.log('response', data);
-      displayWeatherData(data);
-    })
-    .catch((data) => {
-      // console.error('Error:', error);
-      if (cityName !== data.name.toLocaleLowerCase().trim()) {
-        alert(`Please enter valid city name`);
-      }
-    });
+  fetchJsonData(url).then((data) => {
+    toggleLoader(false);
+    console.log('response', data);
 
-  // const latitude = data.coords.latitude;
-  // const longitude = data.coords.longitude;
-  // showMap(latitude, longitude);
+    displayWeatherData(data);
+    // showCityMap(data);
+    const latitude = data.coord.latitude;
+    const longitude = data.coord.longitude;
+    showCityMap(latitude, longitude);
+  });
+
+  // .catch((data) => {
+  //   // console.error('Error:', error);
+  //   if (cityName !== data.name.toLocaleLowerCase().trim()) {
+  //     alert(`Please enter valid city name`);
+  //   }
+  // });
 });
+
+function showCityMap(latitude, longitude) {
+  const outputMap = document.querySelector('.map');
+  outputMap.innerHTML = '';
+  const map = new ol.Map({
+    target: outputMap,
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.OSM(),
+      }),
+    ],
+    view: new ol.View({
+      center: ol.proj.fromLonLat([longitude, latitude]),
+      zoom: 18,
+    }),
+  });
+}
 
 function toggleLoader(isVisible) {
   const containerDiv = document.querySelector('div.loader');
@@ -107,15 +125,16 @@ function geoFindMe() {
 
     status.textContent = '';
     mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-    mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+    mapLink.textContent = mapLink.textContent = `This is the Latitude: ${latitude} °, \n This is the Longitude: ${longitude} °`;
 
     const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
     fetchJsonData(url).then((data) => {
       console.log('response', data);
-      // displayWeatherData(data);
+      displayWeatherData(data);
     });
     showMap(latitude, longitude);
   }
+
   function showMap(latitude, longitude) {
     const outputMap = document.querySelector('.map');
     outputMap.innerHTML = '';
@@ -128,7 +147,7 @@ function geoFindMe() {
       ],
       view: new ol.View({
         center: ol.proj.fromLonLat([longitude, latitude]),
-        zoom: 14,
+        zoom: 18,
       }),
     });
   }
@@ -146,6 +165,3 @@ function geoFindMe() {
 }
 
 document.querySelector('#find-me').addEventListener('click', geoFindMe);
-
-// weather details using current position
-// const url = `api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
