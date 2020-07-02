@@ -40,9 +40,11 @@ searchCity.addEventListener('submit', (e) => {
 
     displayWeatherData(data);
     // showCityMap(data);
-    const latitude = data.coord.latitude;
-    const longitude = data.coord.longitude;
-    showCityMap(latitude, longitude);
+    const latitude = data.coord.lat;
+    console.log(latitude);
+    const longitude = data.coord.lon;
+    console.log(longitude);
+    showMap(latitude, longitude);
   });
 
   // .catch((data) => {
@@ -52,23 +54,6 @@ searchCity.addEventListener('submit', (e) => {
   //   }
   // });
 });
-
-function showCityMap(latitude, longitude) {
-  const outputMap = document.querySelector('.map');
-  outputMap.innerHTML = '';
-  const map = new ol.Map({
-    target: outputMap,
-    layers: [
-      new ol.layer.Tile({
-        source: new ol.source.OSM(),
-      }),
-    ],
-    view: new ol.View({
-      center: ol.proj.fromLonLat([longitude, latitude]),
-      zoom: 18,
-    }),
-  });
-}
 
 function toggleLoader(isVisible) {
   const containerDiv = document.querySelector('div.loader');
@@ -135,23 +120,6 @@ function geoFindMe() {
     showMap(latitude, longitude);
   }
 
-  function showMap(latitude, longitude) {
-    const outputMap = document.querySelector('.map');
-    outputMap.innerHTML = '';
-    const map = new ol.Map({
-      target: outputMap,
-      layers: [
-        new ol.layer.Tile({
-          source: new ol.source.OSM(),
-        }),
-      ],
-      view: new ol.View({
-        center: ol.proj.fromLonLat([longitude, latitude]),
-        zoom: 18,
-      }),
-    });
-  }
-
   function error() {
     status.textContent = 'Unable to retrieve your location';
   }
@@ -162,6 +130,23 @@ function geoFindMe() {
     status.textContent = 'Locating…';
     navigator.geolocation.getCurrentPosition(success, error);
   }
+}
+
+function showMap(latitude, longitude) {
+  const outputMap = document.querySelector('.map');
+  outputMap.innerHTML = '';
+  const map = new ol.Map({
+    target: outputMap,
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.OSM(),
+      }),
+    ],
+    view: new ol.View({
+      center: ol.proj.fromLonLat([longitude, latitude]),
+      zoom: 10,
+    }),
+  });
 }
 
 document.querySelector('#find-me').addEventListener('click', geoFindMe);
