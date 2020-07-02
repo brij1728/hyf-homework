@@ -34,25 +34,26 @@ searchCity.addEventListener('submit', (e) => {
   toggleLoader(true);
   toggleOutputDisplay(false);
 
-  fetchJsonData(url).then((data) => {
-    toggleLoader(false);
-    console.log('response', data);
+  fetchJsonData(url)
+    .then((data) => {
+      toggleLoader(false);
+      console.log('response', data);
 
-    displayWeatherData(data);
-    // showCityMap(data);
-    const latitude = data.coord.lat;
-    console.log(latitude);
-    const longitude = data.coord.lon;
-    console.log(longitude);
-    showMap(latitude, longitude);
-  });
+      displayWeatherData(data);
+      // showCityMap(data);
+      const latitude = data.coord.lat;
+      console.log(latitude);
+      const longitude = data.coord.lon;
+      console.log(longitude);
+      showMap(latitude, longitude);
+    })
 
-  // .catch((data) => {
-  //   // console.error('Error:', error);
-  //   if (cityName !== data.name.toLocaleLowerCase().trim()) {
-  //     alert(`Please enter valid city name`);
-  //   }
-  // });
+    .catch((data) => {
+      // console.error('Error:', error);
+      if (cityName !== data.name.toLocaleLowerCase().trim()) {
+        alert(`Please enter valid city name`);
+      }
+    });
 });
 
 function toggleLoader(isVisible) {
