@@ -69,7 +69,7 @@ function toggleOutputDisplay(isVisible) {
 // displaying weather data weather data
 function displayWeatherData(data) {
   const iconUrl = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '.png';
-  document.querySelector('.weather-icon').innerHTML = `<img src= ${iconUrl}>`;
+  document.querySelector('.weather-icon').innerHTML = `<img src= "${iconUrl}">`;
 
   const celcius = Math.round(parseFloat(data.main.temp - 273));
   document.querySelector('.temperature-value p').innerHTML = `${celcius}°<span>C</span>`;
@@ -111,7 +111,7 @@ function geoFindMe() {
 
     status.textContent = '';
     mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-    mapLink.textContent = mapLink.textContent = `This is the Latitude: ${latitude} °, \n This is the Longitude: ${longitude} °`;
+    // mapLink.textContent = mapLink.textContent = `This is the Latitude: ${latitude} °, \n This is the Longitude: ${longitude} °`;
 
     const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
     fetchJsonData(url).then((data) => {
