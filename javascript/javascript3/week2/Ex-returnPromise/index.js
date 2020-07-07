@@ -68,7 +68,7 @@ function getLoggedInUsers() {
       if (getRandomNumber(100) > 50) {
         resolve(userNames);
       } else {
-        reject(`No has logged in`);
+        reject(`No one has logged in`);
       }
     }, 5000);
   });
@@ -95,4 +95,4 @@ async function getUsers() {
   }
 }
 
-// console.log(getUsers);
+getUsers();
