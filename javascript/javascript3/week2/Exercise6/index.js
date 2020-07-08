@@ -15,14 +15,14 @@ Promise.all(responses).then((value) => {
   console.log(value);
 });
 
-Promise.all(responses).then((value) => {
-  console.log(`Astronauts names are: ${value[0].people.map((m) => m.name)}`);
-  console.log(value[1].map((m) => m.title));
+Promise.all(responses).then(([astronauts, moviesList]) => {
+  console.log(`Astronauts names are: ${astronauts.people.map((m) => m.name)}`);
+  console.log(moviesList.map((m) => m.title));
 });
 // console.log(value[0].map((people) => people.name));
 
 // logging out the movies and the battery status when both promises has been resolved
-Promise.all([response2, navigator.getBattery()]).then((value) => {
-  console.log(value[0].map((m) => m.title));
-  console.log(`Battery status for charging: ${value[1].charging}`);
+Promise.all([response2, navigator.getBattery()]).then(([moviesList, battery]) => {
+  console.log(moviesList.map((m) => m.title));
+  console.log(`Battery status for charging: ${battery.charging}`);
 });

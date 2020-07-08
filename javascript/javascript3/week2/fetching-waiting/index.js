@@ -10,15 +10,18 @@
 // Which way do you prefer, the promise way or the async/await way?
 
 function covidDetails() {
-  console.log(`Wait for 3 seconds`);
-  setTimeout(() => {
-    const promise = fetch('https://api.covid19api.com/summary');
-    console.log(promise);
-    const response = promise.then((response) => response.json());
-    console.log(response);
-  }, 3000);
+  return new Promise((resolve, reject) => {
+    console.log(`Wait for 3 seconds`);
+    setTimeout(async () => {
+      const response = await fetch('https://api.covid19api.com/summary');
+      resolve(await response.json());
+      // console.log(promise);
+      // const response = promise.then((response) => response.json());
+      // console.log(response);
+    }, 3000);
+  });
 }
-covidDetails();
+covidDetails().then((data) => console.log(data));
 
 // timeout function
 function timeout(ms) {
@@ -32,8 +35,9 @@ async function getCovidData() {
   const promise = await fetch('https://api.covid19api.com/summary');
   console.log(promise);
   const data = await promise.json();
-  console.log(data);
-  console.log(data.Global);
+  // console.log(data);
+  // console.log(data.Global);
+  return data;
 }
 
-getCovidData();
+getCovidData().then((data) => console.log(data.Global));

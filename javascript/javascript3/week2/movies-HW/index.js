@@ -12,17 +12,15 @@ const moviesAPI =
   'https://gist.githubusercontent.com/pankaj28843/08f397fcea7c760a99206bcb0ae8d0a4/raw/02d8bc9ec9a73e463b13c44df77a87255def5ab9/movies.json';
 
 async function movies() {
-  const moviesPromise = await fetch(moviesAPI);
+  const moviesList = await (await fetch(moviesAPI)).json();
   // console.log(moviesPromise);
-  const moviesResponse = await moviesPromise.json();
-  console.log(moviesResponse);
+  // const moviesList = await moviesPromise.json();
+  console.log(moviesList);
 
-  const badMovies = moviesResponse.filter((m) => m.rating < 4).map((m) => m.title);
+  const badMovies = moviesList.filter((m) => m.rating < 4).map((m) => m.title);
   console.log(badMovies);
 
-  const badMovies2000s = moviesResponse
-    .filter((m) => m.rating < 4 && m.year >= 2000 && m.year < 2010)
-    .map((m) => m.title);
-  console.log(`Bad movies from 2000s are:`, badMovies2000s);
+  const badMovies2000 = moviesList.filter((m) => m.rating < 4 && m.year >= 2000).map((m) => m.title);
+  console.log(`Bad movies sine year 2000 are:`, badMovies2000);
 }
 movies();
