@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework week-2</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <h1>Open Developer tool of your browser to see JavaScript output.</h1>
+    <canvas class="myCanvas">
+      <p>Add suitable fallback here.</p>
+    </canvas>
+    <script
+      src="https://browser.sentry-cdn.com/5.19.1/bundle.min.js"
+      integrity="sha384-ibWewy8LWP0FdvEBD3iLjNmbFkkh/FKtOz8GR9C8ZBWjDTbjbdIDpa4nc/AasWns"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      Sentry.init({ dsn: 'https://16cad35a2eea4f2e9e04632d5b89b020@sentry.pyfox.dev/5' });
+    </script>
+    <script src="./index.js"></script>
+  </body>
+</html>

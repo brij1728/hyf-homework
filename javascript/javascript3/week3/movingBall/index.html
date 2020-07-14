@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moving Ball</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <h1>Open Developer tool of your browser to see JavaScript output.</h1>
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+    <script
+      src="https://browser.sentry-cdn.com/5.19.1/bundle.min.js"
+      integrity="sha384-ibWewy8LWP0FdvEBD3iLjNmbFkkh/FKtOz8GR9C8ZBWjDTbjbdIDpa4nc/AasWns"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      Sentry.init({ dsn: 'https://f8ea8e6c4081444a9a4be108bb4b3d32@sentry.pyfox.dev/6' });
+    </script>
+    <script src="./index.js"></script>
+  </body>
+</html>

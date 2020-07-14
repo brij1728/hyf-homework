@@ -86,13 +86,13 @@ class CV {
     }
   }
 
-  renderCV() {
-    const id = document.querySelector('<id>');
-    const element = document.createElement('<element>');
-    id.appendChild(element)
+  // renderCV() {
+  //   const id = document.querySelector('<id>');
+  //   const element = document.createElement('<element>');
+  //   id.appendChild(element)
 
-    element.innerHTML = 
-  }
+  //   element.innerHTML =
+  // }
 }
 
 // const job1 = new Job(23, 'developer', '2 years experience of javascript and angular', '23-9-2017', '12-3-2019');
@@ -101,6 +101,7 @@ class CV {
 // const education1 = new Education(17, 'student', 'DTU', 'Delhi', '2018', '2021');
 // const education2 = new Education(19, 'engineer', 'MNIT', 'Allahabad', '2015', '2019');
 
+// const cv1 = new CV('bk10895@gmail.com');
 // cv1.addJob(job1);
 // cv1.addJob(job2);
 // console.log(cv1);
@@ -116,9 +117,9 @@ const myCV = new CV('brirdgk@gmail.com');
 myCV.addJob(13, 'developer', '2 years of experience in javascript and angular', '04-04-2018', '10-05-2020');
 myCV.addJob(17, 'developer', '2 years ofexperience in javascript and angular', '12-04-2018', '19-07-2020');
 
-myCV.addEduction(19, 'engineer', 'MNIT', 'Allahabad', '2015', '2019');
-myCV.addEduction(29, 'engineer', 'MNIT', 'Allahabad', '2013', '2018');
-myCV.addEduction(39, 'engineer', 'DTU', 'Delhi', '2016', '2020');
+myCV.addEduction(19, 'engineering', 'MNIT', 'Allahabad', '2015', '2019');
+myCV.addEduction(29, 'engineering', 'MNIT', 'Allahabad', '2013', '2018');
+myCV.addEduction(39, 'engineering', 'DTU', 'Delhi', '2016', '2020');
 console.log(myCV);
 
 // cv1.removeJob(23);
