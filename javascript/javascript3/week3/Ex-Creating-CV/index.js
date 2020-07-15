@@ -57,11 +57,14 @@ class CV {
   // }
 
   removeJob(id) {
-    for (const job of this.jobs) {
-      const j = this.jobs.indexOf(job);
-      if (this.jobs[j].id === id) {
-        return this.jobs.splice(job, 1);
-      }
+    const matchedIndex = this.jobs.findIndex((element) => {
+      return element.id === id;
+    });
+
+    if (matchedIndex > -1) {
+      return this.jobs.splice(matchedIndex, 1);
+    } else {
+      return this.jobs;
     }
   }
 
@@ -75,7 +78,7 @@ class CV {
     });
 
     if (matchedIndex > -1) {
-      return this.educations.splice(e, 1);
+      return this.educations.splice(matchedIndex, 1);
     } else {
       return this.educations;
     }
@@ -96,27 +99,34 @@ class CV {
   }
 
   renderCV() {
-    const id = document.querySelector('<id>');
-    const element = document.createElement('<element>');
-    id.appendChild(element);
+    const ul = document.createElement('ul');
+    document.body.appendChild(ul);
+    ul.innerHTML = `<h1>${this.email}</h1>`;
 
-    element.innerHTML;
+    for (const item of this.jobs) {
+      console.log(item);
+      const itemList = document.createElement('li');
+      ul.appendChild(itemList).innerHTML = `<h3>ID: ${item.id}</h3>`;
+      // ul.appendChild(itemList).innerHTML = `<h3>Title: ${item.title}</h3>`;
+    }
   }
 }
 
 const cv1 = new CV('bk10895@gmail.com');
 cv1.addJob(23, 'developer', '2 years of experience in javascript and angular', '23-9-2017', '12-3-2019');
-cv1.addEduction(17, 'student', 'DTU', 'Delhi', '2018', '2021');
+cv1.addEduction(17, 'student', 'DTU', 'Delhi', '2014', '2018');
 console.log(cv1);
 
-const myCV = new CV('brirdgk@gmail.com');
-myCV.addJob(13, 'developer', '2 years of experience in javascript and angular', '04-04-2018', '10-05-2020');
+const cv2 = new CV('brirdgk@gmail.com');
+cv2.addJob(13, 'developer', '2 years of experience in javascript and angular', '04-04-2018', '10-05-2020');
+cv2.addEduction(19, 'engineering', 'MNIT', 'Allahabad', '2013', '2017');
+console.log(cv2);
 
-myCV.addEduction(19, 'engineering', 'MNIT', 'Allahabad', '2015', '2019');
+// cv1.removeEducation(17);
+// cv2.removeEducation(19);
+// cv2.removeJob(13);
+console.log(cv1);
 
-console.log(myCV);
-
-// cv1.removeJob(23);
-// myCV.removeEducation(19);
-// myCV.removeJob(13);
-console.log(myCV);
+const cv = [cv1, cv2];
+console.log(cv);
+cv1.renderCV();
