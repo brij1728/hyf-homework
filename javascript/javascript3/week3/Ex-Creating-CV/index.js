@@ -56,13 +56,11 @@ class CV {
   //   // this.jobs = this.jobs.filter((j) => j.id !== job.id);
   // }
 
-  removeJob(id, title) {
-    for (let i = 0; i < this.jobs.length; i++) {
-      const j = this.jobs[i];
-      if (j.id === id) {
-        return this.jobs.splice(i, 1);
-      } else if (j.title === title) {
-        return this.jobs.splice(i, 1);
+  removeJob(id) {
+    for (const job of this.jobs) {
+      const j = this.jobs.indexOf(job);
+      if (this.jobs[j].id === id) {
+        return this.jobs.splice(job, 1);
       }
     }
   }
@@ -72,56 +70,53 @@ class CV {
   }
 
   removeEducation(id, title, school, address) {
-    for (let i = 0; i < this.educations.length; i++) {
-      const j = this.educations[i];
-      if (j.id === id) {
-        return this.educations.splice(i, 1);
-        // } else if (j.title === title) {
-        //   return this.educations.splice(i, 1);
-        // } else if (j.school === school) {
-        //   return this.educations.splice(i, 1);
-        // } else if (j.address === address) {
-        //   return this.educations.splice(i, 1);
-      }
+    const matchedIndex = this.educations.findIndex((element) => {
+      return element.id === id;
+    });
+
+    if (matchedIndex > -1) {
+      return this.educations.splice(e, 1);
+    } else {
+      return this.educations;
     }
+
+    // for (const e of this.educations) {
+    //   const j = this.educations.indexOf(e);
+    //   // console.log(j);
+    //   if (this.educations[j].id === id) {
+    //     return this.educations.splice(e, 1);
+    //     // } else if (this.educations[j].title === title) {
+    //     //   return this.educations.splice(e, 1);
+    //     // } else if (this.educations[j].school === school) {
+    //     //   return this.educations.splice(e, 1);
+    //     // } else if (this.educations[j].address === address) {
+    //     //   return this.educations.splice(e, 1);
+    // }
+    // }
   }
 
-  // renderCV() {
-  //   const id = document.querySelector('<id>');
-  //   const element = document.createElement('<element>');
-  //   id.appendChild(element)
+  renderCV() {
+    const id = document.querySelector('<id>');
+    const element = document.createElement('<element>');
+    id.appendChild(element);
 
-  //   element.innerHTML =
-  // }
+    element.innerHTML;
+  }
 }
-
-// const job1 = new Job(23, 'developer', '2 years experience of javascript and angular', '23-9-2017', '12-3-2019');
-// const job2 = new Job(24, 'developer', '2 years experience of javascript and angular', '04-04-2018', '10-05-2020');
-
-// const education1 = new Education(17, 'student', 'DTU', 'Delhi', '2018', '2021');
-// const education2 = new Education(19, 'engineer', 'MNIT', 'Allahabad', '2015', '2019');
-
-// const cv1 = new CV('bk10895@gmail.com');
-// cv1.addJob(job1);
-// cv1.addJob(job2);
-// console.log(cv1);
-// cv1.removeJob(job1);
 
 const cv1 = new CV('bk10895@gmail.com');
 cv1.addJob(23, 'developer', '2 years of experience in javascript and angular', '23-9-2017', '12-3-2019');
-cv1.addJob(43, 'dataScientist', 'Two years of experience in using python, pandas and mysql', '2017', '2020');
 cv1.addEduction(17, 'student', 'DTU', 'Delhi', '2018', '2021');
 console.log(cv1);
 
 const myCV = new CV('brirdgk@gmail.com');
 myCV.addJob(13, 'developer', '2 years of experience in javascript and angular', '04-04-2018', '10-05-2020');
-myCV.addJob(17, 'developer', '2 years ofexperience in javascript and angular', '12-04-2018', '19-07-2020');
 
 myCV.addEduction(19, 'engineering', 'MNIT', 'Allahabad', '2015', '2019');
-myCV.addEduction(29, 'engineering', 'MNIT', 'Allahabad', '2013', '2018');
-myCV.addEduction(39, 'engineering', 'DTU', 'Delhi', '2016', '2020');
+
 console.log(myCV);
 
 // cv1.removeJob(23);
-myCV.removeEducation(19);
+// myCV.removeEducation(19);
+// myCV.removeJob(13);
 console.log(myCV);
