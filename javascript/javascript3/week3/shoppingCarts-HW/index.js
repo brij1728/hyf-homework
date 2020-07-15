@@ -109,10 +109,9 @@ class ShoppingCart {
       const priceList = document.createElement('li');
       priceUl.appendChild(priceList);
       priceList.textContent = `${product.price}`;
-
-      const paraTotal = document.querySelector('.total');
-      paraTotal.textContent = `${this.user.name}'s total products cost is ${this.getTotal()}`;
     });
+    const paraTotal = document.querySelector('.total');
+    paraTotal.textContent = `${this.user.name}'s total products cost is ₹ ${this.getTotal()}`;
   }
 
   getUser() {
