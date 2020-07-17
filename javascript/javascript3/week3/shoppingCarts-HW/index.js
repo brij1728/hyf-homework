@@ -43,11 +43,11 @@ class Product {
   // rupee is defaproductUlt currency
   convertToCurrency(currency) {
     if (currency.toLocaleLowerCase() === 'dollars') {
-      return (currency = this.price * 75.404);
+      return (currency = this.price * (1 / 75.404));
     } else if (currency.toLocaleLowerCase() === 'euro') {
-      return (currency = this.price * 85.93);
+      return (currency = this.price * (1 / 85.93));
     } else if (currency.toLocaleLowerCase() === 'danish krone') {
-      return (currency = this.price * 11.54);
+      return (currency = this.price * (1 / 11.54));
     }
   }
 
@@ -126,18 +126,66 @@ class ShoppingCart {
   }
 }
 
+class SyncCurrencyConverter {
+  constructor(baseCurrency = 'INR', supportedCurrencies = ['GBP', 'USD', 'DKK', 'EUR']) {
+    if (!baseCurrency) {
+      throw Error('You need to pass a valid currency as base currency, e.g. INR, GBP, DKK.');
+    }
+
+    this.baseCurrency = baseCurrency;
+    this.supportedCurrencies = supportedCurrencies;
+    this.conversionRates = {};
+  }
+
+  getConversionRate(outputCurrency) {
+    return this.conversionRates[outputCurrency];
+  }
+
+  convertToCurrency(baseValue, outputCurrency) {
+    const conversionRate = this.getConversionRate(outputCurrency);
+    return Math.round(conversionRate * baseValue * 100) / 100;
+  }
+
+  async initialize(forceReload = false) {
+    if (!forceReload && Array.from(Object.keys(this.conversionRates)).length > 0) {
+      return;
+    }
+
+    const outputSymbols = this.supportedCurrencies.join(',');
+    const url = `https://api.exchangeratesapi.io/latest?symbols=${outputSymbols}&base=${this.baseCurrency}`;
+    const data = await (await fetch(url)).json();
+
+    for (const outputCurrency of this.supportedCurrencies) {
+      this.conversionRates[outputCurrency] = data.rates[outputCurrency];
+    }
+  }
+}
+
+const currencyConverter = new SyncCurrencyConverter('INR');
+
+let currencyConverterInitialized = false;
+
+currencyConverter.initialize().then(() => {
+  currencyConverterInitialized = true;
+  console.log(currencyConverter.convertToCurrency(1000, 'DKK'));
+  console.log(currencyConverter.convertToCurrency(1000, 'USD'));
+  console.log(currencyConverter.convertToCurrency(1000, 'EUR'));
+  console.log(currencyConverter.convertToCurrency(1000, 'GBP'));
+});
+
 const shoppingCart = new ShoppingCart();
 // const flatscreen = new Product('flat-screen', 5000);
 shoppingCart.addProduct('flat-screen', 5000);
 shoppingCart.addProduct('CPU', 10000);
 shoppingCart.addProduct('keyboard', 1500);
 shoppingCart.addProduct('mouse', 500);
+shoppingCart.addProduct('monitor', 500);
 
 console.log(shoppingCart);
 
 shoppingCart.removeProduct('CPU');
 // console.log(shoppingCart);
-console.log(shoppingCart.searchProduct('mous'));
+console.log(shoppingCart.searchProduct('m'));
 shoppingCart.searchProduct('CPU');
 console.log(shoppingCart.getTotal());
 shoppingCart.getUser();
@@ -145,3 +193,5 @@ shoppingCart.getUser();
 // converting rupee to US dollars
 const product1 = new Product('Chair', 2000);
 product1.convertToCurrencyUsingApi('USD').then((value) => console.log(value));
+
+console.log(product1.convertToCurrency('euro'));

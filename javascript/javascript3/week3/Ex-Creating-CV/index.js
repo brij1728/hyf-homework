@@ -82,44 +82,89 @@ class CV {
     } else {
       return this.educations;
     }
-
-    // for (const e of this.educations) {
-    //   const j = this.educations.indexOf(e);
-    //   // console.log(j);
-    //   if (this.educations[j].id === id) {
-    //     return this.educations.splice(e, 1);
-    //     // } else if (this.educations[j].title === title) {
-    //     //   return this.educations.splice(e, 1);
-    //     // } else if (this.educations[j].school === school) {
-    //     //   return this.educations.splice(e, 1);
-    //     // } else if (this.educations[j].address === address) {
-    //     //   return this.educations.splice(e, 1);
-    // }
-    // }
   }
 
   renderCV() {
-    const ul = document.createElement('ul');
-    document.body.appendChild(ul);
-    ul.innerHTML = `<h1>${this.email}</h1>`;
+    const outputDiv = document.querySelector('.output');
+    outputDiv.innerHTML = '';
+    outputDiv.innerHTML = `<h1>${this.email}</h1>`;
+    outputDiv.innerHTML = `<h3>Job Details</h3>`;
+    outputDiv.appendChild(this.renderJobs());
 
-    for (const item of this.jobs) {
+    outputDiv.innerHTML = `<h3>Education Details</h3>`;
+    outputDiv.appendChild(this.renderEducations());
+  }
+
+  renderJobs() {
+    const ul = document.createElement('ul');
+
+    // ul.innerHTML = `<h3>Job Details</h3>`;
+
+    this.jobs.forEach((item) => {
       console.log(item);
-      const itemList = document.createElement('li');
-      ul.appendChild(itemList).innerHTML = `<h3>ID: ${item.id}</h3>`;
-      // ul.appendChild(itemList).innerHTML = `<h3>Title: ${item.title}</h3>`;
-    }
+
+      // const list = document.createElement('li');
+      // ul.appendChild(list).innerHTML = `<h4>ID: ${item.id}<br>
+      // Title: ${item.title}<br>
+      // Description: ${item.description}<br>
+      // Start date: ${item.startDate}<br>
+      // End date: ${item.endDate}</h4>`;
+
+      const id = document.createElement('li');
+      ul.appendChild(id).innerHTML = `<h4>ID: ${item.id}</h4>`;
+
+      const title = document.createElement('li');
+      ul.appendChild(title).innerHTML = `<h4>Title: ${item.title}</h4>`;
+
+      const description = document.createElement('li');
+      ul.appendChild(description).innerHTML = `<h4>Description: ${item.description}</h4>`;
+
+      const startDate = document.createElement('li');
+      ul.appendChild(startDate).innerHTML = `<h4>Start date: ${item.startDate}</h4>`;
+
+      const endDate = document.createElement('li');
+      ul.appendChild(endDate).innerHTML = `<h4>End date: ${item.endDate}</h4>`;
+    });
+
+    return ul;
+  }
+
+  renderEducations() {
+    const ul = document.createElement('ul');
+
+    ul.innerHTML = `<h3>Education Details</h3>`;
+
+    this.educations.forEach((item) => {
+      const id = document.createElement('li');
+      ul.appendChild(id).innerHTML = `<h4>ID: ${item.id}</h4>`;
+
+      const title = document.createElement('li');
+      ul.appendChild(title).innerHTML = `<h4>Title: ${item.title}</h4>`;
+
+      const description = document.createElement('li');
+      ul.appendChild(description).innerHTML = `<h4>Description: ${item.description}</h4>`;
+
+      const startDate = document.createElement('li');
+      ul.appendChild(startDate).innerHTML = `<h4>Start date: ${item.startDate}</h4>`;
+
+      const endDate = document.createElement('li');
+      ul.appendChild(endDate).innerHTML = `<h4>End date: ${item.endDate}</h4>`;
+    });
+    return ul;
   }
 }
 
 const cv1 = new CV('bk10895@gmail.com');
-cv1.addJob(23, 'developer', '2 years of experience in javascript and angular', '23-9-2017', '12-3-2019');
+cv1.addJob(28, 'developer', '2 years of experience in javascript and angular', '23-9-2017', '12-3-2019');
 cv1.addEduction(17, 'student', 'DTU', 'Delhi', '2014', '2018');
 console.log(cv1);
 
 const cv2 = new CV('brirdgk@gmail.com');
-cv2.addJob(13, 'developer', '2 years of experience in javascript and angular', '04-04-2018', '10-05-2020');
 cv2.addEduction(19, 'engineering', 'MNIT', 'Allahabad', '2013', '2017');
+cv2.addEduction(29, 'engineering', 'MNIT', 'Allahabad', '2013', '2017');
+cv2.addEduction(39, 'engineering', 'MNIT', 'Allahabad', '2013', '2017');
+cv2.addJob(13, 'developer', '2 years of experience in javascript and angular', '04-04-2018', '10-05-2020');
+cv2.addJob(23, 'developer', '2 years of experience in javascript and angular', '04-04-2018', '10-05-2020');
 console.log(cv2);
 
 // cv1.removeEducation(17);
@@ -129,4 +174,4 @@ console.log(cv1);
 
 const cv = [cv1, cv2];
 console.log(cv);
-cv1.renderCV();
+cv2.renderCV();

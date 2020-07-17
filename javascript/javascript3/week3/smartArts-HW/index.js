@@ -75,6 +75,18 @@ class Circle {
     context.arc(this.x, this.y, this.r, this.startAngle, this.endAngle, this.fillColor);
     context.fillStyle = this.fillColor;
     context.fill();
+    context.closePath();
+  }
+
+  clear() {
+    const globalCompositeOperationOriginal = context.globalCompositeOperation;
+
+    context.globalCompositeOperation = 'destination-out';
+    context.beginPath();
+    context.arc(this.x, this.y, this.r + 1, this.startAngle, this.endAngle, this.fillColor);
+    context.fill();
+    context.closePath();
+    context.globalCompositeOperation = globalCompositeOperationOriginal;
   }
 }
 
@@ -85,11 +97,10 @@ c1.draw();
 c2.draw();
 c3.draw();
 
-// now lets make art!
-setTimeout(() => {
-  const red = Math.floor(Math.random() * 300);
-  const green = Math.floor(Math.random() * 300);
-  const blue = Math.floor(Math.random() * 300);
+function drawRandomCircle() {
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
   const maxRadius = 20;
   const minRadius = 3;
 
@@ -102,4 +113,14 @@ setTimeout(() => {
   const c4 = new Circle(x, y, r, startAngle, endAngle, fillColor);
   c4.draw();
   console.log(`Circle has been displayed`);
-}, 2000);
+
+  setTimeout(() => {
+    // c4.fillColor = '#fff';
+    c4.clear();
+  }, Math.max(500, Math.random() * 10000));
+}
+
+// now lets make art!
+setInterval(() => {
+  drawRandomCircle();
+}, 500);
