@@ -1,0 +1,35 @@
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+header {
+  background: cornflowerblue;
+  height: 100px;
+}
+
+.output {
+  display: flexbox;
+  background-color: darkgoldenrod;
+}
+
+.job {
+  background-color: rosybrown;
+  height: max-content;
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid black;
+}
+
+.education {
+  background-color: steelblue;
+  height: max-content;
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid black;
+}

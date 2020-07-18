@@ -5,17 +5,32 @@
 } */
 
 body {
-  /* text-align: center; */
+  text-align: center;
   margin-top: 20px;
   background: rgb(245, 244, 240);
+  margin-top: 20px;
 }
 
 ul {
   /* display: inline-block; */
   margin: 50px;
   text-align: left;
+  /* border-bottom: 1px solid black; */
+  border-top: 1px solid black;
+  list-style-type: square;
 }
 
-li {
+ul > li {
   display: inline-flexbox;
+  border: black;
+}
+
+.output {
+  background-color: #f8d7da;
+
+  display: block;
+  margin: 0 auto;
+
+  border-radius: 10px;
+  padding-bottom: 50px;
 }

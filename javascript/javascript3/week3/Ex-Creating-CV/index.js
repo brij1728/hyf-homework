@@ -88,42 +88,42 @@ class CV {
     const outputDiv = document.querySelector('.output');
     outputDiv.innerHTML = '';
     outputDiv.innerHTML = `<h1>${this.email}</h1>`;
-    outputDiv.innerHTML = `<h3>Job Details</h3>`;
+    // outputDiv.innerHTML = `<h3>Job Details</h3>`;
     outputDiv.appendChild(this.renderJobs());
 
-    outputDiv.innerHTML = `<h3>Education Details</h3>`;
+    // outputDiv.innerHTML = `<h3>Education Details</h3>`;
     outputDiv.appendChild(this.renderEducations());
   }
 
   renderJobs() {
     const ul = document.createElement('ul');
 
-    // ul.innerHTML = `<h3>Job Details</h3>`;
+    ul.innerHTML = `<h3>Job Details</h3>`;
 
     this.jobs.forEach((item) => {
       console.log(item);
 
-      // const list = document.createElement('li');
-      // ul.appendChild(list).innerHTML = `<h4>ID: ${item.id}<br>
-      // Title: ${item.title}<br>
-      // Description: ${item.description}<br>
-      // Start date: ${item.startDate}<br>
-      // End date: ${item.endDate}</h4>`;
+      const list = document.createElement('li');
+      ul.appendChild(list).innerHTML = `<h4> ${item.startDate}-${item.endDate} <br>
+      ID: ${item.id}<br>
+      Title: ${item.title}<br>
+      Description: ${item.description}<br>
+      </h4>`;
 
-      const id = document.createElement('li');
-      ul.appendChild(id).innerHTML = `<h4>ID: ${item.id}</h4>`;
+      // const id = document.createElement('li');
+      // ul.appendChild(id).innerHTML = `<h4>ID: ${item.id}</h4>`;
 
-      const title = document.createElement('li');
-      ul.appendChild(title).innerHTML = `<h4>Title: ${item.title}</h4>`;
+      // const title = document.createElement('li');
+      // ul.appendChild(title).innerHTML = `<h4>Title: ${item.title}</h4>`;
 
-      const description = document.createElement('li');
-      ul.appendChild(description).innerHTML = `<h4>Description: ${item.description}</h4>`;
+      // const description = document.createElement('li');
+      // ul.appendChild(description).innerHTML = `<h4>Description: ${item.description}</h4>`;
 
-      const startDate = document.createElement('li');
-      ul.appendChild(startDate).innerHTML = `<h4>Start date: ${item.startDate}</h4>`;
+      // const startDate = document.createElement('li');
+      // ul.appendChild(startDate).innerHTML = `<h4>Start date: ${item.startDate}</h4>`;
 
-      const endDate = document.createElement('li');
-      ul.appendChild(endDate).innerHTML = `<h4>End date: ${item.endDate}</h4>`;
+      // const endDate = document.createElement('li');
+      // ul.appendChild(endDate).innerHTML = `<h4>End date: ${item.endDate}</h4>`;
     });
 
     return ul;
@@ -135,37 +135,46 @@ class CV {
     ul.innerHTML = `<h3>Education Details</h3>`;
 
     this.educations.forEach((item) => {
-      const id = document.createElement('li');
-      ul.appendChild(id).innerHTML = `<h4>ID: ${item.id}</h4>`;
+      const list = document.createElement('li');
+      ul.appendChild(list).innerHTML = `<h4> ${item.startDate}-${item.endDate} <br>
+      ID: ${item.id}<br>
+      Title: ${item.title}<br>
+      School: ${item.school}<br>
+      Address: ${item.address}
+      </h4>`;
 
-      const title = document.createElement('li');
-      ul.appendChild(title).innerHTML = `<h4>Title: ${item.title}</h4>`;
+      // const id = document.createElement('li');
+      // ul.appendChild(id).innerHTML = `<h4>ID: ${item.id}</h4>`;
 
-      const description = document.createElement('li');
-      ul.appendChild(description).innerHTML = `<h4>Description: ${item.description}</h4>`;
+      // const title = document.createElement('li');
+      // ul.appendChild(title).innerHTML = `<h4>Title: ${item.title}</h4>`;
 
-      const startDate = document.createElement('li');
-      ul.appendChild(startDate).innerHTML = `<h4>Start date: ${item.startDate}</h4>`;
+      // const description = document.createElement('li');
+      // ul.appendChild(description).innerHTML = `<h4>Description: ${item.description}</h4>`;
 
-      const endDate = document.createElement('li');
-      ul.appendChild(endDate).innerHTML = `<h4>End date: ${item.endDate}</h4>`;
+      // const startDate = document.createElement('li');
+      // ul.appendChild(startDate).innerHTML = `<h4>Start date: ${item.startDate}</h4>`;
+
+      // const endDate = document.createElement('li');
+      // ul.appendChild(endDate).innerHTML = `<h4>End date: ${item.endDate}</h4>`;
     });
     return ul;
   }
 }
 
 const cv1 = new CV('bk10895@gmail.com');
-cv1.addJob(28, 'developer', '2 years of experience in javascript and angular', '23-9-2017', '12-3-2019');
+cv1.addJob(28, 'developer', '2 years of experience in javascript and angular', '2017', '2019');
 cv1.addEduction(17, 'student', 'DTU', 'Delhi', '2014', '2018');
 console.log(cv1);
 
 const cv2 = new CV('brirdgk@gmail.com');
 cv2.addEduction(19, 'engineering', 'MNIT', 'Allahabad', '2013', '2017');
-cv2.addEduction(29, 'engineering', 'MNIT', 'Allahabad', '2013', '2017');
-cv2.addEduction(39, 'engineering', 'MNIT', 'Allahabad', '2013', '2017');
-cv2.addJob(13, 'developer', '2 years of experience in javascript and angular', '04-04-2018', '10-05-2020');
-cv2.addJob(23, 'developer', '2 years of experience in javascript and angular', '04-04-2018', '10-05-2020');
-console.log(cv2);
+cv2.addEduction(29, 'Inter College', 'DPS', 'Allahabad', '2011', '2013');
+cv2.addEduction(39, 'High School', 'Holy Cross School', 'Lucknow', '2009', '2011');
+cv2.addJob(13, 'Developer', 'Expert  in Javascript and Angular', '2020', 'Present');
+cv2.addJob(23, 'Jr. Developer', 'Expert in Javascript, CSS & HTMl', '2017', '2020');
+cv2.addJob(23, 'Intern', 'Expert in HTML & CSS', '2016', '2017');
+console.table(cv2);
 
 // cv1.removeEducation(17);
 // cv2.removeEducation(19);
